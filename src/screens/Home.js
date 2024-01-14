@@ -6,7 +6,7 @@ import BotonList from '../components/BotonList';
 import BotonDirection from '../components/BotonDirection';
 
 const Data = [
-    { id: '1', title: '123', screen: 'Llamada', imagen: require("../assets/pokeball.png")},
+    { id: '1', title: '123', screen: 'Llamada', imagen: require("../assets/pokeball.png") },
     { id: '2', title: 'ambulancia', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
     { id: '3', title: 'bomberos', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
     { id: '4', title: 'policia', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
