@@ -1,12 +1,14 @@
-// ClasesEmergenciaScreen.js
-import React, { useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import Accordion from 'react-native-collapsible/Accordion';
-import Data from '../Util/Datos';  // Ajusta la ruta según tu estructura de carpetas
 import tw from 'twrnc';
+import React, { useState } from 'react';
+import { View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Accordion from 'react-native-collapsible/Accordion';
+import Data from '../Util/Datos';  
 
 const ClasesEmergenciaScreen = () => {
   const [activeSections, setActiveSections] = useState([]);
+
+  const dataNumber = Object.values(Data);
 
   const tiposDeClases = Object.values(Data).reduce((tipos, item) => {
     if (!tipos.includes(item.clase)) {
@@ -23,12 +25,26 @@ const ClasesEmergenciaScreen = () => {
     setActiveSections(updatedSections);
   };
 
+  const navigation = useNavigation();
+
   const renderSection = ({ item }) => {
     const isSectionActive = activeSections.includes(item);
     const numerosDeEmergencia = Object.values(Data)
       .filter((dato) => dato.clase === item)
       .map((dato) => dato.nombre );
 
+      const handleCallPress = (phoneName) => {
+        const emergencyMatch = dataNumber.find((emergency) => emergency.nombre === phoneName);
+
+        if (emergencyMatch) {
+          console.log(`Llamar a: ${emergencyMatch.nombre}`);
+          
+        navigation.navigate("Telefono", {item: emergencyMatch});
+        } else {
+          console.log(`No se encontró la emergencia con el nombre ${phoneName}`);
+        }
+    };
+      
     return (
       <Accordion
         sections={[item]}
@@ -43,9 +59,11 @@ const ClasesEmergenciaScreen = () => {
             data={numerosDeEmergencia}
             keyExtractor={(numero) => numero}
             renderItem={({ item: numero }) => (
+              <TouchableWithoutFeedback onPress={() => handleCallPress(numero)}>
               <View style={tw`p-2 border-b border-gray-300`}>
                 <Text>{numero}</Text>
               </View>
+              </TouchableWithoutFeedback>
             )}
           />
         )}
@@ -68,35 +86,4 @@ const ClasesEmergenciaScreen = () => {
 export default ClasesEmergenciaScreen;
 
 
-// import { View, Text, FlatList, TouchableWithoutFeedback, StyleSheet } from 'react-native';
-// import React from 'react';
-// import Accordion from '../components/Accordion';
-
-// const textoAlternativo = [
-//   {
-//     question:"este texdo deveria ser el 1",
-//     answer: "dodo esto es el relleno ojala salga bien",
-//   },
-//   {
-//     question:"este texdo deveria ser el 2",
-//     answer: "dodo esto es el relleno ojala salga bien",
-//   },
-//   {
-//     question:"este texdo deveria ser el 3",
-//     answer: "dodo esto es el relleno ojala salga bien",
-//   },
-// ];
-
-// export default function Clases(){
-//   return (
-//     <View>
-//       {textoAlternativo.map((faq,index) => 
-//       <Accordion 
-//       key={index.toString()} 
-//       title={faq.question} 
-//       details={faq.answer}/>)}
-//     </View>
-//   )
-
-// }
 

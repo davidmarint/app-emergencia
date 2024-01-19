@@ -2,8 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import Home from '../screens/Home';
-import Call from '../screens/Call';
-import ListaNum from './NavigationStackPhone'
+import Call from './stacks/NavigationStackClass';
+import ListaNum from './stacks/NavigationStackPhone'
 
 const Tap = createBottomTabNavigator();
 
@@ -15,7 +15,7 @@ export default function TapNavigationCall(){
             headerShown: false,
         }}>
             <Tap.Screen 
-                name="Inicio" 
+                name="Home" 
                 component={Home} 
                 options={{ 
                     tabBarIcon: ({color, size}) => (

@@ -1,6 +1,6 @@
 import react from "react";
   const Datos = {
-    '123': { nombre: 'Emergencia 123',number: "123", numero:'123', clase: 'Emergencias', imagen: require("../assets/pokeball.png"), descripcion: 'Descripción de emergencia 123' },
+    '123': { nombre: 'Emergencia 123',number: "123",  clase: 'Emergencias', imagen: require("../assets/pokeball.png"), descripcion: 'Descripción de emergencia 123' },
     'ambulancia':  { nombre: 'Ambulancia',number: "987", clase: 'Salud', imagen: require("../assets/pokeball.png"), descripcion: 'Descripción de ambulancia' },
     'bomberos': { nombre: 'Bomberos',number: "654", clase: 'Emergencias', imagen: require("../assets/pokeball.png"), descripcion: 'Descripción de bomberos' },
     'policia': { nombre: 'Policía',number: "322", clase: 'Control', imagen: require("../assets/pokeball.png"), descripcion: 'Descripción de policía' },

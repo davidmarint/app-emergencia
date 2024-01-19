@@ -9,15 +9,15 @@ const Phone = () => {
 const { params: { item },} = useRoute();
 
 const llamar  = () =>{
-  console.log(`Llamar a:`)
+  console.log(`Llamar a: ${item}`)
 }
 
   return (
     <View style={tw`items-center`}>
           <View style={tw`h-4/7 items-center justify-center`}>
-            <Image 
+          <Image 
             source={item.imagen}
-            style={tw`w-45 h-45 `}/>
+            style={tw`w-45 h-45 `}/> 
             <Text style={tw`text-2xl top-4 font-semibold`}>{item.nombre}</Text>
           </View>
           <View style={tw`border-4 border-blue-950 h-1/5 rounded-2xl p-3

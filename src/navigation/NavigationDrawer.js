@@ -10,7 +10,7 @@ export default function NavigationDrawer() {
     return(
         <Drawer.Navigator>
             <Drawer.Screen name="Inicio" component={TapNavigationHome}/>
-            <Drawer.Screen name="Llamada" component={TapNavigationCall}/>
+            <Drawer.Screen name="Clases" component={TapNavigationCall}/>
             <Drawer.Screen name="Directorio" component={TapNavigationDirectory}/>
         </Drawer.Navigator>
     )
