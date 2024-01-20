@@ -1,6 +1,6 @@
 import tw from 'twrnc'
 import React from 'react';
-import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Image, TouchableWithoutFeedback, Linking } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 
@@ -9,7 +9,12 @@ const Phone = () => {
 const { params: { item },} = useRoute();
 
 const llamar  = () =>{
-  console.log(`Llamar a: ${item}`)
+  console.log(`Llamar a: ${item.number}`) //quitar al final
+  if (item.number) {
+    Linking.openURL(`tel:${item.number}`);
+  } else {
+    console.error('Número de emergencia no válido');
+  }
 }
 
   return (

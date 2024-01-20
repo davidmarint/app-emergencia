@@ -6,15 +6,15 @@ import BotonList from '../components/BotonList';
 import BotonDirection from '../components/BotonDirection';
 
 const Data = [
-    { id: '1', title: '123', screen: 'Llamada', imagen: require("../assets/pokeball.png") },
-    { id: '2', title: 'ambulancia', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
-    { id: '3', title: 'bomberos', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
-    { id: '4', title: 'policia', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
-    { id: '5', title: 'defensa civil', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
-    { id: '6', title: 'cruz roja', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
+    { id: '1', title: 'Linea 123', screen: 'Llamada', imagen: require("../assets/pokeball.png") },
+    { id: '2', title: 'Ambulancia', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
+    { id: '3', title: 'Bomberos', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
+    { id: '4', title: 'Policía', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
+    { id: '5', title: 'Defensa Civil', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
+    { id: '6', title: 'Cruz Roja', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
     { id: '7', title: 'Gaula', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
-    { id: '8', title: 'trancito', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
-    { id: '9', title: 'otras', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
+    { id: '8', title: 'Tránsito', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
+    { id: '9', title: 'Otras', screen: 'OtraVista', imagen: require('../assets/pokeball.png') },
     ];
 
     const logo = require("../assets/pokeball.png");

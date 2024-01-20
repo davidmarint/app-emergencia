@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
-import Home from '../screens/Home';
+import Home from './stacks/NavigationStackHome';
 import Call from './stacks/NavigationStackClass';
 import ListaNum from './stacks/NavigationStackPhone';
 
@@ -28,7 +28,7 @@ export default function TapNavigationDirectory(){
                 component={Call}
                 options={{ 
                     tabBarIcon: ({color, size}) => (
-                        <Icon name="phone" color={color} size={size} />
+                        <Icon name="layer-group" color={color} size={size} />
                         ),
                 }} />
             <Tap.Screen 
