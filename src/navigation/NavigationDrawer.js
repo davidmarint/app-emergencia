@@ -14,13 +14,20 @@ export default function NavigationDrawer() {
             drawerActiveTintColor: '#ffffff',
             drawerActiveBackgroundColor:'rgb(23,37,88)',}} >
             <Drawer.Screen name="Inicio" component={TapNavigationHome} options={{
-                
                 drawerIcon: ({ color, size }) => (
                     <Icon name="home" color={color} size={size}/>
                 ),
             }}/>
-            <Drawer.Screen name="Clases" component={TapNavigationCall}/>
-            <Drawer.Screen name="Directorio" component={TapNavigationDirectory}/>
+            <Drawer.Screen name="Clases" component={TapNavigationCall} options={{
+                drawerIcon: ({ color, size }) => (
+                    <Icon name="layer-group" color={color} size={size}/>
+                ),
+            }}/>
+            <Drawer.Screen name="Directorio" component={TapNavigationDirectory} options={{
+                drawerIcon: ({ color, size }) => (
+                    <Icon name="address-book" color={color} size={size}/>
+                ),
+            }}/>
         </Drawer.Navigator>
     )
 } 

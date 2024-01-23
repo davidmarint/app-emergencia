@@ -11,7 +11,7 @@ export default function TapNavigationDirectory(){
 
     return (
         <Tap.Navigator 
-            initialRouteName='Directorio'
+            initialRouteName='Directory'
             screenOptions={{
                 headerShown: false,
             }}>
@@ -32,7 +32,7 @@ export default function TapNavigationDirectory(){
                         ),
                 }} />
             <Tap.Screen 
-                name="Directorio" 
+                name="Directory" 
                 component={ListaNum}
                 options={{ 
                     tabBarIcon: ({color, size}) => (
