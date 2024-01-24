@@ -13,7 +13,14 @@ export default function TapNavigationHome(){
         <Tap.Navigator initialRouteName='Home'
         screenOptions={{
             headerShown: false,
-        }}>
+            tabBarStyle:{
+                backgroundColor: 'rgb(23,37,88)',
+                tabBarActiveTintColor: 'red',
+            },
+            tabBarActiveTintColor: '#fcd34d',
+            tabBarInactiveTintColor: 'white',
+        }}
+        >
             <Tap.Screen 
                 name="Home" 
                 component={Home} 
@@ -21,6 +28,7 @@ export default function TapNavigationHome(){
                     tabBarIcon: ({color, size}) => (
                         <Icon name="home" color={color} size={size} />
                         ),
+                        tabBarLabel: 'Inicio',
                 }}/>
             <Tap.Screen 
                 name="Llamar" 
@@ -29,6 +37,7 @@ export default function TapNavigationHome(){
                     tabBarIcon: ({color, size}) => (
                         <Icon name="layer-group" color={color} size={size} />
                         ),
+                        tabBarLabel: 'Clases',
                 }} />
             <Tap.Screen 
                 name="Directorio" 

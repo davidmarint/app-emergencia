@@ -14,6 +14,12 @@ export default function TapNavigationDirectory(){
             initialRouteName='Directory'
             screenOptions={{
                 headerShown: false,
+                tabBarStyle:{
+                    backgroundColor: 'rgb(23,37,88)',
+                    tabBarActiveTintColor: 'red',
+                },
+                tabBarActiveTintColor: '#fcd34d',
+                tabBarInactiveTintColor: 'white',
             }}>
             <Tap.Screen 
                 name="Home" 
@@ -22,6 +28,7 @@ export default function TapNavigationDirectory(){
                     tabBarIcon: ({color, size}) => (
                         <Icon name="home" color={color} size={size} />
                         ),
+                        tabBarLabel: 'Inicio',
                 }}/>
             <Tap.Screen 
                 name="Llamar" 
@@ -30,6 +37,7 @@ export default function TapNavigationDirectory(){
                     tabBarIcon: ({color, size}) => (
                         <Icon name="layer-group" color={color} size={size} />
                         ),
+                        tabBarLabel: 'Clases',
                 }} />
             <Tap.Screen 
                 name="Directory" 
@@ -38,6 +46,7 @@ export default function TapNavigationDirectory(){
                     tabBarIcon: ({color, size}) => (
                         <Icon name="address-book" color={color} size={size} />
                         ),
+                        tabBarLabel: 'Directorio',
                 }} />
         </Tap.Navigator>
     );

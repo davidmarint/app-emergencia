@@ -1,6 +1,6 @@
 import tw from 'twrnc'
 import React from 'react';
-import { View, Text, Image, SafeAreaView, FlatList, } from 'react-native';
+import { View, Text, Image, SafeAreaView, FlatList,KeyboardAvoidingView, Platform } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import BotonList from '../components/BotonList';
 import BotonDirection from '../components/BotonDirection';
@@ -21,6 +21,10 @@ const Data = [
 
 const Home = () => {
     return (
+        <KeyboardAvoidingView
+    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    style={{ flex: 1 }}
+    >
     <SafeAreaView>
         <View>
             <View style={tw`justify-center h-24 `}>
@@ -39,6 +43,7 @@ const Home = () => {
             <BotonDirection/>
         </View>
     </SafeAreaView>
+    </KeyboardAvoidingView>
     );
 }
 
