@@ -1,13 +1,14 @@
 import tw from 'twrnc';
 import React from 'react'
 import { View, Image } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import Phone from '../../screens/Phone';
-import Class from '../../screens/Call';
+import Home from '../../screens/Home';
 
 const Stack = createStackNavigator();
+
 
 const CustomHeaderTitle = () => (
     <View style={{alignItems: 'center', width: 310,}}>
@@ -29,7 +30,7 @@ export default function NavigationClass() {
             },
             headerTitle: () => <CustomHeaderTitle />,
         }}>
-            <Stack.Screen name="Clases" component={Class} options={{
+            <Stack.Screen name="Principio" component={Home} options={{
                 headerLeft: () => {
                     return(
                         <View style={tw`p-3 left-3 top-1`}>

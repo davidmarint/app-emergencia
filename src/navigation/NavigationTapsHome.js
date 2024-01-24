@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
-import Home from '../screens/Home';
+import Home from './stacks/NavigationStackHome';
 import Call from './stacks/NavigationStackClass';
 import ListaNum from './stacks/NavigationStackPhone';
 
@@ -10,10 +10,17 @@ const Tap = createBottomTabNavigator();
 export default function TapNavigationHome(){
 
     return (
-        <Tap.Navigator initialRouteName='Inicio'
+        <Tap.Navigator initialRouteName='Home'
         screenOptions={{
             headerShown: false,
-        }}>
+            tabBarStyle:{
+                backgroundColor: 'rgb(23,37,88)',
+                tabBarActiveTintColor: 'red',
+            },
+            tabBarActiveTintColor: '#fcd34d',
+            tabBarInactiveTintColor: 'white',
+        }}
+        >
             <Tap.Screen 
                 name="Home" 
                 component={Home} 
@@ -21,14 +28,16 @@ export default function TapNavigationHome(){
                     tabBarIcon: ({color, size}) => (
                         <Icon name="home" color={color} size={size} />
                         ),
+                        tabBarLabel: 'Inicio',
                 }}/>
             <Tap.Screen 
                 name="Llamar" 
                 component={Call}
                 options={{ 
                     tabBarIcon: ({color, size}) => (
-                        <Icon name="phone" color={color} size={size} />
+                        <Icon name="layer-group" color={color} size={size} />
                         ),
+                        tabBarLabel: 'Clases',
                 }} />
             <Tap.Screen 
                 name="Directorio" 
