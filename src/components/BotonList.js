@@ -22,10 +22,10 @@ const BotonList = ({item}) => {
 
     return (
     <TouchableWithoutFeedback onPress={() =>seleccion(item.title)}>
-        <View style={tw`mr-1 my-2 p-3 border-l border-gray-300 flex items-center justify-between w-35`}>
+        <View style={tw`mr-1 my-1 p-3 border-l border-gray-300 flex items-center justify-between w-1/3 `}>
         <Image 
         source={item.imagen}
-        style={tw` bottom-2 right-2 w-25 h-25 right-1 `}/> 
+        style={tw` bottom-2 right-2 w-20 h-20 right-1 `}/> 
             <Text style={tw`text-lg text-center text-blue-950 font-semibold`}>{item.title}</Text>
         </View>
     </TouchableWithoutFeedback>
