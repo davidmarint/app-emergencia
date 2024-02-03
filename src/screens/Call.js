@@ -49,9 +49,10 @@ const ClasesEmergenciaScreen = () => {
       <Accordion
         sections={[item]}
         activeSections={isSectionActive ? [0] : []}
+        underlayColor= 'white'
         renderHeader={() => (
-          <View style={tw`bg-gray-200 p-2`}>
-            <Text style={tw`text-lg font-semibold`}>{item}</Text>
+          <View style={tw`bg-blue-950 p-2 my-1 rounded-2xl h-15`}>
+            <Text style={tw`text-lg font-semibold text-white`}>{item}</Text>
           </View>
         )}
         renderContent={() => (

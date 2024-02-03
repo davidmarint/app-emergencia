@@ -1,6 +1,6 @@
 import tw from 'twrnc'
 import React from 'react';
-import { View, Text,TouchableWithoutFeedback, Image } from 'react-native';
+import { View, Text,TouchableWithoutFeedback, Image, } from 'react-native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 
