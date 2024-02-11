@@ -10,10 +10,10 @@ import Class from '../../screens/Call';
 const Stack = createStackNavigator();
 
 const CustomHeaderTitle = () => (
-    <View style={{alignItems: 'center', width: 310,}}>
+    <View style={{alignItems: 'center', width: '140%'}}>
     <Image
         source={require('../../assets/tituloHeader.png')} // Ruta de la imagen
-        style={{ width: 275, height: 58,}} 
+        style={{ width: 275, height: 58, right: 45 }} 
     />
     </View>
     );
@@ -35,7 +35,7 @@ export default function NavigationClass() {
                         <View style={tw`p-3 left-3 top-1`}>
                         <Icon name="bars" 
                         color="#172558" 
-                        size={30} 
+                        size={25} 
                         onPress={() =>navigation.dispatch(DrawerActions.openDrawer)}
                         />
                         </View>

@@ -1,14 +1,23 @@
 import tw from 'twrnc'
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { Searchbar } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native';
+
 
 const SearchBar = () => {
-    
+  const navigation = useNavigation();
+  const goSearch = () =>{
+    navigation.navigate("buscador");
+  }
+  
+
     return (
         <View>
           <Searchbar
             placeholder="Buscar..."
+            onIconPress={goSearch}
+            onPressIn={goSearch}
             placeholderTextColor="gray"
             iconColor="rgba(252,211,77,1)"
             elevation={5}
