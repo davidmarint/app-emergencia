@@ -15,15 +15,15 @@ const ListNumbers = ({item}) => {
     };
 
     return (
-    <TouchableWithoutFeedback onPress={() => handleCallPress(item.number)}>
+    <TouchableWithoutFeedback onPress={() => handleCallPress(item.numero)}>
         <View style={tw`p-4 border-b-4 border-blue-950 rounded-2xl`}>
                 <View style={tw`flex-row items-center justify-between px-4`}>
                     <Image 
-                        source={item.imagen}
+                        source={{ uri:item.imagen}}
                         style={tw`w-15 h-15 mr-3 right-2 `}/> 
                     <View style={tw`flex-col basis-3/4`}>
                     <Text style={tw`text-lg font-semibold`}>{item.nombre}</Text>
-                    <Text style={{ color: '#888' }}>{item.number}</Text>
+                    <Text style={{ color: '#888' }}>{item.numero}</Text>
                     </View>
                     <Icon name="phone" size={24} color="rgb(23,37,84)" style={tw`right-2`} />
                 </View>

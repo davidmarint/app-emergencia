@@ -2,12 +2,12 @@ import tw from 'twrnc';
 import React, { useState } from 'react';
 import { View, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import Datos from '../Util/Datos';
+import ScreenMostrarDatos from '../../database/ListaDatos';
 import FlatListComponent from './FlatListComponent';
 
 
-const emergencyNumbers  = Object.values(Datos);
 const SearchBar = () => {
+    const emergencyNumbers=  ScreenMostrarDatos();
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredNumbers, setFilteredNumbers] = useState([]);
 

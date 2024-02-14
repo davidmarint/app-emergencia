@@ -2,14 +2,13 @@ import tw from 'twrnc'
 import React from 'react';
 import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Data from '../Util/Datos';  
+import Data from '../../database/ListaDatos';  
 
 
 const BotonList = ({item}) => {
 
-    const dataNumber = Object.values(Data);
+    const dataNumber = Object.values(Data());
     const navigation = useNavigation();
-
     const seleccion = (phoneName) =>{
         const emergencyMatch = dataNumber.find((emergency) => emergency.nombre === phoneName);
         if (emergencyMatch) {

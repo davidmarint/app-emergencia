@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Accordion from 'react-native-collapsible/Accordion';
-import Data from '../Util/Datos';  
+import  Icon  from 'react-native-vector-icons/FontAwesome5';
+import Data from '../../database/ListaDatos';  
 
 const ClasesEmergenciaScreen = () => {
   const [activeSections, setActiveSections] = useState([]);
 
-  const dataNumber = Object.values(Data);
+  const dataNumber = Data();
 
-  const tiposDeClases = Object.values(Data).reduce((tipos, item) => {
+  const tiposDeClases = Object.values(Data()).reduce((tipos, item) => {
     if (!tipos.includes(item.clase)) {
       tipos.push(item.clase);
     }
@@ -29,7 +30,7 @@ const ClasesEmergenciaScreen = () => {
 
   const renderSection = ({ item }) => {
     const isSectionActive = activeSections.includes(item);
-    const numerosDeEmergencia = Object.values(Data)
+    const numerosDeEmergencia = Object.values(dataNumber)
       .filter((dato) => dato.clase === item)
       .map((dato) => dato.nombre );
 
@@ -51,8 +52,9 @@ const ClasesEmergenciaScreen = () => {
         activeSections={isSectionActive ? [0] : []}
         underlayColor= 'white'
         renderHeader={() => (
-          <View style={tw`bg-blue-950 p-2 my-1 rounded-2xl h-15`}>
+          <View style={tw `bg-blue-950 p-3 my-1 rounded-2xl h-15 flex-row justify-between`}>
             <Text style={tw`text-lg font-semibold text-white`}>{item}</Text>
+            <Icon  name={isSectionActive ? "chevron-circle-up":"chevron-circle-right"} color={"rgb(252,211,77)"} size={30} />
           </View>
         )}
         renderContent={() => (

@@ -7,6 +7,7 @@ import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import Phone from '../../screens/Phone';
 import Home from '../../screens/Home';
 import Search from '../../screens/SearchView';
+import Mapas from '../../screens/Mapas';
 
 const Stack = createStackNavigator();
 
@@ -46,7 +47,7 @@ export default function NavigationClass() {
             }}/>
             <Stack.Screen name="Telefono" component={Phone}/>
             <Stack.Screen name="buscador" component={Search}/>
-            
+            <Stack.Screen name="Mapa" component={Mapas}/>
         </Stack.Navigator>
     );
 }

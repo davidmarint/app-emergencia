@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../../database/firebase.js'; // Importa la instancia de Firestore
+import { db } from './firebase'; // Importa la instancia de Firestore
 import {collection, addDoc, getDocs, doc, setDoct} from 'firebase/firestore';
 
 const ScreenMostrarDatos = () => {
@@ -25,9 +25,10 @@ const ScreenMostrarDatos = () => {
         console.error('Error al obtener los datos:', error);
       }
     };
-    console.log(lista);
     obtenerDatos();
+  
   }, []); 
+  return lista;
 };
 
-export default lista;
+export default ScreenMostrarDatos;
