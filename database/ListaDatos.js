@@ -26,7 +26,7 @@ const ScreenMostrarDatos = () => {
       }
     };
     obtenerDatos();
-  
+    console.log(lista);
   }, []); 
   return lista;
 };

@@ -4,9 +4,8 @@ import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Data from '../../database/ListaDatos';  
 
-
 const BotonList = ({item}) => {
-
+    
     const dataNumber = Object.values(Data());
     const navigation = useNavigation();
     const seleccion = (phoneName) =>{

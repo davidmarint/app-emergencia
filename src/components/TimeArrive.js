@@ -1,7 +1,8 @@
 import tw from 'twrnc';
 import *as React from 'react';
 import *as Location from 'expo-location';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import {GOOGLE_MAPS_KEY} from '@env'
 
 
@@ -47,9 +48,22 @@ const TimeArrive = () => {
     } 
 
     return (
-        <View>
-            <Text>{eta}</Text>
-        </View>
+        <TouchableWithoutFeedback>
+            <View  style={tw`items-center justify-center h-max`}>
+              
+              <View  style={tw`rounded-full bg-amber-400 w-max h-15 flex-row items-center p-3`}>
+               
+                <Text style={tw`text-lg text-center text-blue-950 font-semibold bottom-0.5 px-5`}>Tiempo de llegada Aprox: {eta}</Text>
+                <Icon  
+                    style={tw`right-2`} 
+                    name="map-marked-alt" 
+                    color={"rgb(23,37,84)"} 
+                    size={20} 
+                  />   
+              </View>
+            </View>
+        </TouchableWithoutFeedback>
+    
     );
 }
 

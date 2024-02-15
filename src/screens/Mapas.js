@@ -9,8 +9,8 @@ import {GOOGLE_MAPS_KEY} from '@env'
 const Mapas = () => {
     
     const [origin, setOrigin] = React.useState({
-        latitude : 4.1340,
-        longitude: -73.6266,
+        latitude : 4.103093,   //4.1340
+        longitude: -73.590991, //-73.6266
     });
     
     const [destination, setDestination] = React.useState({
