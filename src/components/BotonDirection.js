@@ -9,7 +9,7 @@ const BotonDirection = () => {
 
     const navigation = useNavigation();
     const seleccion = () =>{
-    navigation.navigate("Mapa");
+    navigation.navigate("Llamar");
     }
 
     return (

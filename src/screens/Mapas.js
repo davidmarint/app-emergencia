@@ -4,10 +4,12 @@ import *as Location from 'expo-location';
 import { View, Text } from 'react-native';
 import MapView, {Marker, Polyline,} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
+import { useRoute } from '@react-navigation/native';
 import {GOOGLE_MAPS_KEY} from '@env'
 
 const Mapas = () => {
     
+    const { params: { item },} = useRoute(); 
     const [origin, setOrigin] = React.useState({
         latitude : 4.103093,   //4.1340
         longitude: -73.590991, //-73.6266
@@ -32,7 +34,12 @@ const Mapas = () => {
             latitude: location.coords.latitude,
             longitude: location.coords.longitude
         }
+        const destiny = {
+            latitude: item.ubicacion.latitude,
+            longitude: item.ubicacion.longitude,
+        }
         setOrigin(current);
+        setDestination(destiny);
     } 
 
 

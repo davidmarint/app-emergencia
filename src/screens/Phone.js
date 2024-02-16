@@ -17,7 +17,6 @@ const llamar  = () =>{
     console.error('Número de emergencia no válido');
   }
 }
-console.log();
   return (
     <View style={tw`items-center`}>
           <View style={tw`h-3/7 w-full items-center justify-center`}>
@@ -31,8 +30,7 @@ console.log();
           
             <Text style={tw`text-lg font-semibold p-3 text-white`}>DESCRIPCIÓN</Text>
             <Text style={tw`text-justify p-2 text-base text-white`}>{item.descripcion}</Text>
-           
-          { item.ubicacion !== undefined && <TimeArrive/> } 
+          { item.ubicacion !== undefined && <TimeArrive item={item}/> } 
           
 
           <TouchableWithoutFeedback onPress={llamar}>

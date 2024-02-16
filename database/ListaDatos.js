@@ -10,7 +10,7 @@ const ScreenMostrarDatos = () => {
         const querySnapshot = await getDocs (collection (db, 'lineas'))
         const lista=[]
         querySnapshot.forEach((doc)=>{ 
-          const { nombre, numero, clase, imagen, descripcion}= doc.data()
+          const { nombre, numero, clase, imagen, descripcion,ubicacion}= doc.data()
           lista.push({ 
             id:doc.id,
             nombre,
@@ -18,6 +18,7 @@ const ScreenMostrarDatos = () => {
             clase,
             imagen,
             descripcion,
+            ubicacion,
           })
         })
           setLista(lista) 
@@ -26,7 +27,7 @@ const ScreenMostrarDatos = () => {
       }
     };
     obtenerDatos();
-    console.log(lista);
+    //console.log(lista);
   }, []); 
   return lista;
 };

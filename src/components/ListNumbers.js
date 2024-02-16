@@ -10,7 +10,7 @@ const ListNumbers = ({item}) => {
 
     const handleCallPress = (phoneNumber) => {
         // Lógica para realizar la llamada
-        console.log(`Llamar a: ${phoneNumber}`);
+        console.log(`Llamar a: ${phoneNumber}`);//quitar al final
         navigation.navigate("Telefono", {item})
     };
 
