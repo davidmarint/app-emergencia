@@ -19,13 +19,13 @@ const Home = () => {
             <View style={tw`flex-row flex-wrap`}>
             <BotonList title={'Linea de emergencias'} imagen={require('../assets/icono123.png')}/>
             <BotonList title={'Ambulancia'} imagen={require('../assets/ambulancia.png')}/>
-            <BotonList title={'Bomberos'} imagen={require('../assets/icono123.png')}/>
-            <BotonList title={'Policia'} imagen={require('../assets/icono123.png')}/>
-            <BotonList title={'Cruz roja'} imagen={require('../assets/icono123.png')}/>
-            <BotonList title={'Gaula'} imagen={require('../assets/icono123.png')}/>
-            <BotonList title={'Ejercito'} imagen={require('../assets/icono123.png')}/>
-            <BotonList title={'Alcaldia'} imagen={require('../assets/icono123.png')}/>
-            <BotonList title={'Clinicas'} imagen={require('../assets/icono123.png')}/>
+            <BotonList title={'Bomberos'} imagen={require('../assets/bomberos.png')}/>
+            <BotonList title={'Policia'} imagen={require('../assets/policia.png')}/>
+            <BotonList title={'Cruz roja'} imagen={require('../assets/cruz.png')}/>
+            <BotonList title={'Cuadrantes'} imagen={require('../assets/estacion2.png')}/>
+            <BotonList title={'Ejercito'} imagen={require('../assets/ejercito.png')}/>
+            <BotonList title={'Alcaldia'} imagen={require('../assets/alcaldia.png')}/>
+            <BotonList title={'Clinicas'} imagen={require('../assets/hospital.png')}/>
             </View>
             {/* <FlatList
                 data={Data}

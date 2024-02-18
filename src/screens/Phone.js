@@ -37,7 +37,7 @@ const llamar  = () =>{
             
             <View  style={tw`items-center justify-center top-5`}>
               
-              <View  style={tw`rounded-full bg-amber-400 w-max h-15 flex-row items-center p-3`}>
+              <View  style={tw`rounded-full bg-amber-400 h-15 flex-row items-center p-3`}>
 
                 <Text style={tw`text-lg text-center text-blue-950 font-semibold bottom-0.5 px-5`}>Llamar a: {item.numero}</Text>
                 <Icon  

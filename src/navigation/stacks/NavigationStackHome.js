@@ -8,6 +8,7 @@ import Phone from '../../screens/Phone';
 import Home from '../../screens/Home';
 import Search from '../../screens/SearchView';
 import Mapas from '../../screens/Mapas';
+import Clinic from '../../screens/Clinic';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,7 @@ export default function NavigationClass() {
             <Stack.Screen name="Telefono" component={Phone}/>
             <Stack.Screen name="buscador" component={Search}/>
             <Stack.Screen name="Mapa" component={Mapas}/>
+            <Stack.Screen name="Clinicas" component={Clinic}/>
         </Stack.Navigator>
     );
 }

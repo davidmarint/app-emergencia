@@ -7,19 +7,19 @@ import FlatListComponent from './FlatListComponent';
 
 
 const SearchBar = () => {
-    const emergencyNumbers=  ScreenMostrarDatos();
+
+const emergencyNumbers = Object.values(ScreenMostrarDatos())
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredNumbers, setFilteredNumbers] = useState([]);
 
     const handleSearch = (query) => {
     setSearchQuery(query);
-
     // Filtra los números de emergencia según el nombre
-    const filtered = emergencyNumbers.filter(
+    const filtered = Object.values(emergencyNumbers).filter(
     (emergency) =>
-        emergency.nombre.toLowerCase().includes(query.toLowerCase())
+        emergency.nombre?.toLowerCase().includes(query.toLowerCase())
     );
-
+        
     setFilteredNumbers(filtered);
     };
 
