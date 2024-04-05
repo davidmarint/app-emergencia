@@ -7,11 +7,13 @@ import BotonDirection from '../components/BotonDirection';
 
 
 const Home = () => {
+    const num =1;
     return (
+        <ScrollView style={tw`flex-1`}>
     <SafeAreaView>
         <View>
             <View style={tw`justify-center h-24 `}>
-                <SearchBar/>
+                <SearchBar num={num}/>
             </View>
             <View style={tw`h-1/12 border-2 border-amber-400 bg-amber-400 p-3`} >
             <Text style={tw`text-xl font-semibold text-blue-950 `}>LINEAS PRINCIPALES</Text>
@@ -27,18 +29,12 @@ const Home = () => {
             <BotonList title={'Alcaldia'} imagen={require('../assets/alcaldia.png')}/>
             <BotonList title={'Clinicas'} imagen={require('../assets/hospital.png')}/>
             </View>
-            {/* <FlatList
-                data={Data}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => <BotonList item={item}/>}
-                showsVerticalScrollIndicator={false}
-                numColumns={3}
-            /> */}
-            <View style={tw`top-9`}>
+            <View style={tw`top-9 h-35`}>
             <BotonDirection/>
             </View>
         </View>
     </SafeAreaView>
+    </ScrollView>
     );
 }
 

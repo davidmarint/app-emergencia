@@ -4,6 +4,7 @@ import { View, Text, Image, TouchableWithoutFeedback, Linking, ScrollView} from 
 import { useRoute } from '@react-navigation/native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import TimeArrive from '../components/TimeArrive';
+import Direccion from '../components/Direcccion'
 
 const Phone = () => {
 
@@ -18,20 +19,27 @@ const llamar  = () =>{
   }
 }
   return (
+      <ScrollView style={tw`flex-1`}>
     <View style={tw`items-center`}>
-          <View style={tw`h-3/7 w-full items-center justify-center`}>
+          <View style={tw`h-35/100 w-full items-center justify-center`}>
           <Image 
             source={{uri:item.imagen}}
             style={tw`w-6/12 h-48`}/> 
             <Text style={tw`text-2xl top-4 font-semibold`}>{item.nombre}</Text>
           </View>
-          
-          <View style={tw`h-3/5 p-3 bg-blue-950 opacity-98 w-full border-t-4 border-amber-500`}>
+          <View style={tw`h-140 p-3 bg-blue-950 opacity-98 w-full border-t-4 border-amber-500`}>
           
             <Text style={tw`text-lg font-semibold p-3 text-white`}>DESCRIPCIÓN</Text>
             <Text style={tw`text-justify p-2 text-base text-white`}>{item.descripcion}</Text>
+            {item.nombre === "Bomberos" && 
+            <Text style={tw`text-justify p-2 text-base text-white`}>Disponivilidad de vehiculos de atencion rapida: 4 </Text>
+            }
+            {item.nombre === "Ambulancia" && 
+            <Text style={tw`text-justify p-2 text-base text-white`}>Disponivilidad de vehiculos de atencion : 29 </Text>
+            }
+             <Direccion/>
           { item.ubicacion !== undefined && <TimeArrive item={item}/> } 
-          
+         
 
           <TouchableWithoutFeedback onPress={llamar}>
             
@@ -54,6 +62,7 @@ const llamar  = () =>{
       
         </View>
     </View>
+    </ScrollView>
   );
 }
 

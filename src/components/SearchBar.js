@@ -5,10 +5,11 @@ import { Searchbar } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native';
 
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+  const {num} = props;
   const navigation = useNavigation();
   const goSearch = () =>{
-    navigation.navigate("buscador");
+    navigation.navigate("buscador",{num});
   }
   
 

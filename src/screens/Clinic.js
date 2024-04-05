@@ -25,19 +25,19 @@ const Clinic = () => {
         let resul;
         switch(Value){
             case "1":
-                resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25")
+                resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25" || dato.id === "26" || dato.id === "27")
                 .map((dato) => dato);
             break;
             case "2":
-                resul = Object.values(numerosDeEmergencia).filter((dato) =>  dato.id === "26" || dato.id === "8")
+                resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "24" || dato.id === "26" || dato.id === "25" || dato.id === "8" || dato.id === "27")
                 .map((dato) => dato );
                 break;
                 case "3":
-                    resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8")
+                    resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25" || dato.id === "8" || dato.id === "26" || dato.id === "27")
                     .map((dato) => dato );
                     break;
                     case "4":
-                        resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8")
+                        resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8" || dato.id === "27")
                         .map((dato) => dato );
                         break;
                         case "5":
@@ -45,17 +45,13 @@ const Clinic = () => {
                             .map((dato) => dato );
                             break;
                             case "6":
-                                resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8")
+                                resul = Object.values(numerosDeEmergencia).filter((dato) =>  dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8")
                                 .map((dato) => dato );
                                 break;
                                 case "7":
-                                    resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8")
+                                    resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8" || dato.id === "27")
                                     .map((dato) => dato );
                                     break;
-                                    case "8":
-                                        resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8")
-                                        .map((dato) => dato );
-                                        break;
                                         case "9":
                                             resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8")
                                             .map((dato) => dato );
@@ -65,16 +61,16 @@ const Clinic = () => {
                                                 .map((dato) => dato );
                                                 break;
                                                 case "11":
-                                                    resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8")
+                                                    resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "26"  || dato.id === "8")
                                                     .map((dato) => dato );
                                                     break;
                                                     case "12":
-                                                        resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"|| dato.id === "24" || dato.id === "26" || dato.id === "8" || dato.id === "27")
+                                                        resul = Object.values(numerosDeEmergencia).filter((dato) => dato.id === "23" || dato.id === "25"  || dato.id === "8" || dato.id === "24" || dato.id === "26" || dato.id === "27")
                                                         .map((dato) => dato );
                                                         break;
             }
         ;
-        console.log(Value)
+        //console.log(Value)
         return(resul);
     }
     const otro = mostrar(selectedValue);
@@ -94,15 +90,14 @@ const Clinic = () => {
             selectedValue={selectedValue}
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
             >
-         <Picker.Item label="Seleccionar" value="12"/>
+        <Picker.Item label="Seleccionar" value="12"/>
         <Picker.Item label="Salud total" value="1"/>
         <Picker.Item label="Sanitas" value="2" />
         <Picker.Item label="Capital Salud" value="3" />
         <Picker.Item label="Nueva Eps" value="4" />
-        <Picker.Item label="Servimedicos" value="5" />
+        <Picker.Item label="Cajacopi" value="5" />
         <Picker.Item label="Famisanar" value="6" />
         <Picker.Item label="Compensar" value="7" />
-        <Picker.Item label="Medimas" value="8" />
         <Picker.Item label="EPS Indigena Mallamas" value="9" />
         <Picker.Item label="Sisben" value="10" />
         <Picker.Item label="No Tengo" value="11" />

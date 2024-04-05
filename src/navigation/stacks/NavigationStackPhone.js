@@ -10,12 +10,10 @@ import Directory from '../../screens/Directory';
 const Stack = createStackNavigator();
 
 const CustomHeaderTitle = () => (
-    <View style={{alignItems: 'center', width: '140%'}}>
     <Image
-        source={require('../../assets/tituloHeader.png')} // Ruta de la imagen
-        style={{ width: 275, height: 58,  right: 45 }} 
-    />
-    </View>
+    source={require('../../assets/tituloHeader.png')} // Ruta de la imagen
+    style={{ width: 275, height: 58, bottom:18  }} 
+/>
     );
 
 export default function NavigationPhone() {
@@ -25,14 +23,14 @@ export default function NavigationPhone() {
             headerTintColor:'rgb(23,37,88)',
             headerStyle: {
                 backgroundColor: 'white',
-                height: 120,
+                height: 80,
             },
             headerTitle: () => <CustomHeaderTitle />,
         }}>
             <Stack.Screen name="ListadoNum" component={Directory} options={{
                 headerLeft: () => {
                     return(
-                        <View style={tw`p-3 left-3 top-1`}>
+                        <View style={tw`p-2 left-5 bottom-4`}>
                         <Icon name="bars" 
                         color="#172558" 
                         size={25} 

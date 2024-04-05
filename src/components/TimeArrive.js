@@ -26,11 +26,15 @@ const TimeArrive = ({item}) => {
         getLoscationPermission();
     }, [])
     async function getLoscationPermission() {
-        // let { status } = Location.requestForegroundPermissionsAsync();
-        //  if(status !== 'granted'){
-        //      alert('permission denied');
-        //      return;
-        //  } 
+        try {   
+            const { status } = await Location.requestForegroundPermissionsAsync();
+                if (status !== 'granted') {
+                    alert('permission denied')
+                    console.log('El usuario no otorgó permisos para acceder a la ubicación.');
+                    return;
+                        // Aquí podrías mostrar un mensaje al usuario informándole que necesita otorgar permisos.
+                    } else {
+        
         let location = await Location.getCurrentPositionAsync({});
         const current = {
             latitude: location.coords.latitude,
@@ -39,7 +43,6 @@ const TimeArrive = ({item}) => {
         const response = await fetch(
             `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&key=${GOOGLE_MAPS_KEY}`
         );
-
         const data = await response.json();
         const duration = data.routes[0].legs[0].duration.text;
         
@@ -50,7 +53,12 @@ const TimeArrive = ({item}) => {
         setEta(duration);
         setOrigin(current);
         setDestination(destiny);
-        console.log(destination)
+        }
+    } catch (error) {
+        console.error('Error al solicitar permisos de ubicación:', error);
+
+        // Aquí podrías manejar cualquier error que ocurra durante la solicitud de permisos.
+    }
     } 
     const navigation = useNavigation();
     const seleccion = () =>{
@@ -59,8 +67,8 @@ const TimeArrive = ({item}) => {
 
     return (
         <TouchableWithoutFeedback  onPress={() =>seleccion()}>
-            <View  style={tw`items-center justify-center h-max`}>
-                <View  style={tw`rounded-full bg-amber-400 w-max h-15 flex-row items-center p-3`}>
+            <View  style={tw`items-center justify-center`}>
+                <View  style={tw`rounded-full bg-amber-400 h-15 flex-row items-center p-3`}>
                 <Text style={tw`text-lg text-center text-blue-950 font-semibold bottom-0.5 px-5`}>Tiempo de llegada Aprox: {eta}</Text>
                 <Icon  
                     style={tw`right-2`} 

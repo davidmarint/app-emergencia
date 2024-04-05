@@ -18,6 +18,8 @@ const BotonList = (props) => {
             navigation.navigate("Telefono", {item: emergencyMatch});
         } else if (phoneName === "Clinicas"){
             navigation.navigate("Clinicas", {item: emergencyMatch});
+        } else if (phoneName === "Cuadrantes"){
+            navigation.navigate("Cuadrantes", {item: emergencyMatch});
         } else {
             console.log(`No se encontró la emergencia con el nombre`);
         }
@@ -28,8 +30,8 @@ const BotonList = (props) => {
         <View style={tw`mr-2 my-1 p-3 border-l border-gray-300  items-center  w-31/100 `}>
         <Image 
         source={imagen}
-        style={tw` bottom-2 right-2 w-20 h-20 right-1  `}/> 
-            <Text style={tw`text-lg text-center text-blue-950 font-semibold bottom-2`}>{title}</Text>
+        style={tw` bottom-2 left-1 w-20 h-20 `}/> 
+            <Text style={tw`text-center text-blue-950 font-semibold bottom-2`}>{title}</Text>
         </View>
     </TouchableWithoutFeedback>
     );
