@@ -2,7 +2,7 @@ import tw from 'twrnc';
 import React, { useState } from 'react';
 import { View, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import ScreenMostrarDatos from '../../database/ListaDatos';
+import ScreenMostrarDatos from '../../database/ListaLugares';
 import FlatListComponent from './FlatListComponent';
 
 

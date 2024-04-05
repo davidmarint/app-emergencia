@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../../database/firebase.js'; // Importa la instancia de Firestore
+import { db } from './firebase'; // Importa la instancia de Firestore
 import {collection, addDoc, getDocs, doc, setDoct} from 'firebase/firestore';
 
 const ScreenMostrarDatos = () => {
@@ -10,7 +10,7 @@ const ScreenMostrarDatos = () => {
         const querySnapshot = await getDocs (collection (db, 'lineas'))
         const lista=[]
         querySnapshot.forEach((doc)=>{ 
-          const { nombre, numero, clase, imagen, descripcion}= doc.data()
+          const { nombre, numero, clase, imagen, descripcion,ubicacion}= doc.data()
           lista.push({ 
             id:doc.id,
             nombre,
@@ -18,6 +18,7 @@ const ScreenMostrarDatos = () => {
             clase,
             imagen,
             descripcion,
+            ubicacion,
           })
         })
           setLista(lista) 
@@ -25,9 +26,10 @@ const ScreenMostrarDatos = () => {
         console.error('Error al obtener los datos:', error);
       }
     };
-    console.log(lista);
     obtenerDatos();
+    //console.log(lista);
   }, []); 
+  return lista;
 };
 
-export default lista;
+export default ScreenMostrarDatos;

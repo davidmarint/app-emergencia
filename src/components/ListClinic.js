@@ -4,7 +4,7 @@ import { View, Text,TouchableWithoutFeedback, Image, } from 'react-native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 
-const ListNumbers = ({item}) => { 
+const ListClinic = ({item}) => { 
 
     const navigation = useNavigation();
 
@@ -13,10 +13,12 @@ const ListNumbers = ({item}) => {
         console.log(`Llamar a: ${phoneNumber}`);//quitar al final
         navigation.navigate("Telefono", {item})
     };
-
+    //console.log(item)
     return (
+    
     <TouchableWithoutFeedback onPress={() => handleCallPress(item.numero)}>
         <View style={tw`p-4 border-b-4 border-blue-950 rounded-2xl`}>
+            
                 <View style={tw`flex-row items-center justify-between px-4`}>
                     <Image 
                         source={{ uri:item.imagen}}
@@ -32,4 +34,4 @@ const ListNumbers = ({item}) => {
     );
 }
 
-export default ListNumbers;
+export default ListClinic;

@@ -7,17 +7,18 @@ import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import Phone from '../../screens/Phone';
 import Home from '../../screens/Home';
 import Search from '../../screens/SearchView';
+import Mapas from '../../screens/Mapas';
+import Clinic from '../../screens/Clinic';
+import LocalPolice from '../../screens/LocalPolice';
 
 const Stack = createStackNavigator();
 
 
 const CustomHeaderTitle = () => (
-    <View style={{alignItems: 'center', width: '140%'}}>
     <Image
         source={require('../../assets/tituloHeader.png')} // Ruta de la imagen
-        style={{ width: 275, height: 58,  right: 45 }} 
+        style={{ width: 275, height: 58, bottom:18  }} 
     />
-    </View>
     );
 
 export default function NavigationClass() {
@@ -27,14 +28,14 @@ export default function NavigationClass() {
             headerTintColor:'rgb(23,37,88)',
             headerStyle: {
                 backgroundColor: 'white',
-                height: 120,
+                height: 80,
             },
             headerTitle: () => <CustomHeaderTitle />,
         }}>
             <Stack.Screen name="Principio" component={Home} options={{
                 headerLeft: () => {
                     return(
-                        <View style={tw`p-3 left-3 top-1`}>
+                        <View style={tw`p-2 left-5 bottom-4`}>
                         <Icon name="bars" 
                         color="#172558" 
                         size={25} 
@@ -46,7 +47,9 @@ export default function NavigationClass() {
             }}/>
             <Stack.Screen name="Telefono" component={Phone}/>
             <Stack.Screen name="buscador" component={Search}/>
-            
+            <Stack.Screen name="Mapa" component={Mapas}/>
+            <Stack.Screen name="Clinicas" component={Clinic}/>
+            <Stack.Screen name="Cuadrantes" component={LocalPolice}/>
         </Stack.Navigator>
     );
 }

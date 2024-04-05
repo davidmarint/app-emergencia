@@ -5,41 +5,36 @@ import SearchBar from '../components/SearchBar';
 import BotonList from '../components/BotonList';
 import BotonDirection from '../components/BotonDirection';
 
-const Data = [
-    { id: '1', title: 'Linea 123', screen: 'Llamada', imagen: require("../assets/icono123.png") },
-    { id: '2', title: 'Ambulancia', screen: 'OtraVista', imagen: require('../assets/ambulancia.png') },
-    { id: '3', title: 'Bomberos', screen: 'OtraVista', imagen: require('../assets/icono123.png') },
-    { id: '4', title: 'Policía', screen: 'OtraVista', imagen: require('../assets/icono123.png') },
-    { id: '5', title: 'Defensa Civil', screen: 'OtraVista', imagen: require('../assets/icono123.png') },
-    { id: '6', title: 'Cruz Roja', screen: 'OtraVista', imagen: require('../assets/icono123.png') },
-    { id: '7', title: 'Gaula', screen: 'OtraVista', imagen: require('../assets/icono123.png') },
-    { id: '8', title: 'Tránsito', screen: 'OtraVista', imagen: require('../assets/icono123.png') },
-    { id: '9', title: 'Otras', screen: 'OtraVista', imagen: require('../assets/icono123.png') },
-    ];
-
 
 const Home = () => {
+    const num =1;
     return (
+        <ScrollView style={tw`flex-1`}>
     <SafeAreaView>
         <View>
             <View style={tw`justify-center h-24 `}>
-                <SearchBar/>
+                <SearchBar num={num}/>
             </View>
             <View style={tw`h-1/12 border-2 border-amber-400 bg-amber-400 p-3`} >
             <Text style={tw`text-xl font-semibold text-blue-950 `}>LINEAS PRINCIPALES</Text>
             </View>
-            <FlatList
-                data={Data}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => <BotonList item={item}/>}
-                showsVerticalScrollIndicator={false}
-                numColumns={3}
-            />
-            <View style={tw`top-9`}>
+            <View style={tw`flex-row flex-wrap`}>
+            <BotonList title={'Linea de emergencias'} imagen={require('../assets/icono123.png')}/>
+            <BotonList title={'Ambulancia'} imagen={require('../assets/ambulancia.png')}/>
+            <BotonList title={'Bomberos'} imagen={require('../assets/bomberos.png')}/>
+            <BotonList title={'Policia'} imagen={require('../assets/policia.png')}/>
+            <BotonList title={'Cruz roja'} imagen={require('../assets/cruz.png')}/>
+            <BotonList title={'Cuadrantes'} imagen={require('../assets/estacion2.png')}/>
+            <BotonList title={'Ejercito'} imagen={require('../assets/ejercito.png')}/>
+            <BotonList title={'Alcaldia'} imagen={require('../assets/alcaldia.png')}/>
+            <BotonList title={'Clinicas'} imagen={require('../assets/hospital.png')}/>
+            </View>
+            <View style={tw`top-9 h-35`}>
             <BotonDirection/>
             </View>
         </View>
     </SafeAreaView>
+    </ScrollView>
     );
 }
 
