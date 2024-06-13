@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import Navigation from './src/navigation/Navigation';
-import {SafeAreaView} from 'react-native';
+import { Provider } from 'react-redux';
 
 
 export default function App() {

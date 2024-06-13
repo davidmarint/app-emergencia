@@ -1,0 +1,2558 @@
+openapi: 3.0.3
+info:
+  title: ASI API
+  version: 1.0.0
+  description: API Documentation
+paths:
+  /api/companies/:
+    get:
+      operationId: companiesList
+      tags:
+      - Companies
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+          description: ''
+  /api/companies/{id}/:
+    get:
+      operationId: companiesRetrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this company.
+        required: true
+      tags:
+      - Companies
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+  /api/emergencies/:
+    get:
+      operationId: emergenciesList
+      description: text
+      parameters:
+      - in: query
+        name: company_id
+        schema:
+          type: integer
+        description: Filter emergencies by company id
+      tags:
+      - Emergencies
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Emergency'
+          description: ''
+    post:
+      operationId: emergenciesCreate
+      tags:
+      - Emergencies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Emergency'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Emergency'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Emergency'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emergency'
+          description: ''
+  /api/emergencies/{id}/:
+    get:
+      operationId: emergenciesRetrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Emergencia.
+        required: true
+      tags:
+      - Emergencies
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emergency'
+          description: ''
+    put:
+      operationId: emergenciesUpdate
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Emergencia.
+        required: true
+      tags:
+      - Emergencies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Emergency'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Emergency'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Emergency'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emergency'
+          description: ''
+    patch:
+      operationId: emergenciesPartialUpdate
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Emergencia.
+        required: true
+      tags:
+      - Emergencies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEmergency'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEmergency'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEmergency'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emergency'
+          description: ''
+    delete:
+      operationId: emergenciesDestroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Emergencia.
+        required: true
+      tags:
+      - Emergencies
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/emergencies/images/{emergencyId}/:
+    post:
+      operationId: emergenciesImagesCreate
+      description: Anexar una imagen a una emergencia
+      summary: Anexar documento a un modelo de datos
+      parameters:
+      - in: path
+        name: emergencyId
+        schema:
+          type: integer
+        description: Id de la Emergencia a la que se le va agregar una imagen
+        required: true
+      tags:
+      - Emergencies
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+          description: ''
+  /api/emergencies/images/{id}/:
+    delete:
+      operationId: emergenciesImagesDestroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Imagen.
+        required: true
+      tags:
+      - Emergencies
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/emergencies/last/:
+    get:
+      operationId: emergenciesLastRetrieve
+      tags:
+      - Emergencies
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emergency'
+          description: ''
+  /api/main/configurations/:
+    get:
+      operationId: mainConfigurationsList
+      tags:
+      - Configurations
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Configuration'
+          description: ''
+  /api/main/configurations/{id}/:
+    get:
+      operationId: mainConfigurationsRetrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Configuración.
+        required: true
+      tags:
+      - Configurations
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+          description: ''
+  /api/main/current/:
+    get:
+      operationId: mainCurrentRetrieve
+      description: Obtiene el Usuario Actual utilizando el token en el HEADER
+      summary: Obtiene el Usuario Actual utilizando el token en el HEADER
+      tags:
+      - Users
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+          description: ''
+        '401':
+          description: Usted no tiene permiso para ver este usuario
+  /api/main/devices/android/:
+    post:
+      operationId: mainDevicesAndroidCreate
+      description: Registra un dispositivo android para recibir las notificaciones
+        push
+      summary: Registra un dispositivo android recibir las notificaciones push
+      tags:
+      - Devices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: Registro del dispositivo exitoso
+        '400':
+          description: Este campo es requerido
+  /api/main/devices/ios/:
+    post:
+      operationId: mainDevicesIosCreate
+      description: Registra un dispositivo ios recibir las notificaciones push
+      summary: Registra un dispositivo ios recibir las notificaciones push
+      tags:
+      - Devices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: Registro del dispositivo exitoso
+        '400':
+          description: Este campo es requerido
+  /api/main/devices/unlink-android-device/:
+    post:
+      operationId: mainDevicesUnlinkAndroidDeviceCreate
+      description: Elimina un dispositivo android para recibir las notificaciones
+        push
+      summary: Elimina un dispositivo android para recibir las notificaciones push
+      tags:
+      - Devices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Eliminación del dispositivo exitoso
+        '400':
+          description: El dispositivo no existe
+  /api/main/devices/unlink-ios-device/:
+    post:
+      operationId: mainDevicesUnlinkIosDeviceCreate
+      description: Elimina un dispositivo ios para recibir las notificaciones push
+      summary: Elimina un dispositivo ios para recibir las notificaciones push
+      tags:
+      - Devices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GCMDevice'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Eliminación del dispositivo exitoso
+        '400':
+          description: El dispositivo no existe
+  /api/main/emergencies/:
+    get:
+      operationId: mainEmergenciesList
+      tags:
+      - Emergencies
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmergencyTypes'
+          description: ''
+  /api/main/emergencies/{id}/:
+    get:
+      operationId: mainEmergenciesRetrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Tipo de Emergencia.
+        required: true
+      tags:
+      - Emergencies
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmergencyTypes'
+          description: ''
+  /api/main/login/:
+    post:
+      operationId: mainLoginCreate
+      description: Iniciar Sesión
+      tags:
+      - Authenticate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+        required: true
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenOutput'
+          description: ''
+  /api/main/logout/:
+    post:
+      operationId: mainLogoutCreate
+      description: Cerrar sesión
+      tags:
+      - Authenticate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logout'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Logout'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Logout'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: Cierre de sesión exitoso
+        '401':
+          description: Usted no tiene permiso para ver este usuario
+  /api/main/refresh/:
+    post:
+      operationId: mainRefreshCreate
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - Authenticate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/main/register/:
+    post:
+      operationId: mainRegisterCreate
+      description: Registrar un nuevo Usuario
+      summary: Registrar un nuevo Usuario
+      tags:
+      - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+          description: ''
+  /api/main/user/{username}/:
+    get:
+      operationId: mainUserRetrieve
+      description: Obtiene la información de un usuario mediante el nombre usuario
+      summary: Obtiene la información de un usuario mediante el nombre usuario
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - Users
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+          description: ''
+        '404':
+          description: El Usuario no existe
+    post:
+      operationId: mainUserCreate
+      description: Actualiza los datos del usuario, solo el usuario puede actualizar
+        sus datos
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - Users
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                avatar:
+                  type: string
+                  format: binary
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+          description: ''
+        '404':
+          description: El Usuario no existe
+        '400':
+          description: Datos inválidos
+        '401':
+          description: Usted no tiene permiso para actualizar este usuario
+    delete:
+      operationId: mainUserDestroy
+      description: Elimina un usuario, solo el usuario se puede eliminar a si mismo
+      summary: Elimina un usuario, solo el usuario se puede eliminar a si mismo
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - Users
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          description: Eliminación exitosa del usuario
+        '404':
+          description: El Usuario no existe
+        '400':
+          description: Usted no tiene permiso para eliminar este usuario
+  /api/maps/inside/{id}/:
+    get:
+      operationId: mapsInsideRetrieve
+      summary: Revisa si una latitud y longitud se encuentra de una zona
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: latitude
+        schema:
+          type: number
+          format: double
+        required: true
+      - in: query
+        name: longitude
+        schema:
+          type: number
+          format: double
+        required: true
+      tags:
+      - ZoneMaps
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: boolean
+          description: ''
+  /api/maps/lines/:
+    get:
+      operationId: mapsLinesList
+      description: text
+      parameters:
+      - in: query
+        name: company_id
+        schema:
+          type: integer
+        description: Filter lines by company id
+      tags:
+      - LineMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineMapList'
+          description: ''
+  /api/maps/lines/{id}/:
+    get:
+      operationId: mapsLinesRetrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this line map.
+        required: true
+      tags:
+      - LineMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineMap'
+          description: ''
+  /api/maps/points/:
+    get:
+      operationId: mapsPointsList
+      description: text
+      parameters:
+      - in: query
+        name: company_id
+        schema:
+          type: integer
+        description: Filter points by company id
+      tags:
+      - PointMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointMapList'
+          description: ''
+  /api/maps/points/{id}/:
+    get:
+      operationId: mapsPointsRetrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this point map.
+        required: true
+      tags:
+      - PointMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointMap'
+          description: ''
+  /api/maps/search/lines/:
+    get:
+      operationId: mapsSearchLinesList
+      description: text
+      parameters:
+      - in: query
+        name: company_id
+        schema:
+          type: integer
+        description: company_id
+        required: true
+      - in: query
+        name: latitude
+        schema:
+          type: number
+          format: float
+        description: latitude
+      - in: query
+        name: longitude
+        schema:
+          type: number
+          format: float
+        description: longitude
+      - in: query
+        name: radius
+        schema:
+          type: number
+          format: float
+        description: radius
+      - in: query
+        name: tag
+        schema:
+          type: string
+        description: tag
+      tags:
+      - SearchMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineMapList'
+          description: ''
+  /api/maps/search/points/:
+    get:
+      operationId: mapsSearchPointsList
+      description: text
+      parameters:
+      - in: query
+        name: company_id
+        schema:
+          type: integer
+        description: company_id
+        required: true
+      - in: query
+        name: latitude
+        schema:
+          type: number
+          format: float
+        description: latitude
+      - in: query
+        name: longitude
+        schema:
+          type: number
+          format: float
+        description: longitude
+      - in: query
+        name: radius
+        schema:
+          type: number
+          format: float
+        description: radius
+      - in: query
+        name: tag
+        schema:
+          type: string
+        description: tag
+      tags:
+      - SearchMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointMapList'
+          description: ''
+  /api/maps/search/zones/:
+    get:
+      operationId: mapsSearchZonesList
+      description: text
+      parameters:
+      - in: query
+        name: company_id
+        schema:
+          type: integer
+        description: company_id
+        required: true
+      - in: query
+        name: latitude
+        schema:
+          type: number
+          format: float
+        description: latitude
+      - in: query
+        name: longitude
+        schema:
+          type: number
+          format: float
+        description: longitude
+      - in: query
+        name: radius
+        schema:
+          type: number
+          format: float
+        description: radius
+      - in: query
+        name: tag
+        schema:
+          type: string
+        description: tag
+      tags:
+      - SearchMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZoneMapList'
+          description: ''
+  /api/maps/zones/:
+    get:
+      operationId: mapsZonesList
+      description: text
+      parameters:
+      - in: query
+        name: company_id
+        schema:
+          type: integer
+        description: Filter zones by company id
+      tags:
+      - ZoneMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZoneMapList'
+          description: ''
+  /api/maps/zones/{id}/:
+    get:
+      operationId: mapsZonesRetrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this zone map.
+        required: true
+      tags:
+      - ZoneMaps
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZoneMap'
+          description: ''
+  /api/notifications/items/:
+    get:
+      operationId: notificationsItemsRetrieve
+      tags:
+      - Notifications
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/notifications/items/{id}/:
+    get:
+      operationId: notificationsItemsRetrieve2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Notifications
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/notifications2/device/:
+    post:
+      operationId: notifications2DeviceCreate
+      description: Registra un dispositivo android para recibir las notificaciones
+        push
+      summary: Registra un dispositivo android recibir las notificaciones push
+      tags:
+      - Devices2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Device'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: Registro del dispositivo exitoso
+        '400':
+          description: Este campo es requerido
+  /api/notifications2/unlink-device/:
+    post:
+      operationId: notifications2UnlinkDeviceCreate
+      description: Elimina un dispositivo android para recibir las notificaciones
+        push
+      summary: Elimina un dispositivo android para recibir las notificaciones push
+      tags:
+      - Devices2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Device'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: Eliminación del dispositivo exitoso
+        '400':
+          description: El dispositivo no existe
+  /api/pec/menu/{companyId}/:
+    get:
+      operationId: pecMenuRetrieve
+      description: Retrieve a model instance send request data
+      parameters:
+      - in: path
+        name: companyId
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Pec
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+          description: ''
+  /api/pec/page/{id}/:
+    get:
+      operationId: pecPageRetrieve
+      description: Retrieve a model instance send request data
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this page.
+        required: true
+      tags:
+      - Pec
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: ''
+  /api/user/notes/:
+    get:
+      operationId: userNotesList
+      tags:
+      - User
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Note'
+          description: ''
+    post:
+      operationId: userNotesCreate
+      tags:
+      - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Note'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Note'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+          description: ''
+  /api/user/notes/{id}/:
+    delete:
+      operationId: userNotesDestroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this note.
+        required: true
+      tags:
+      - User
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/zones/contacts/:
+    get:
+      operationId: zonesContactsList
+      description: List a queryset send reques data
+      tags:
+      - Zones
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+          description: ''
+  /documentation/schema/:
+    get:
+      operationId: documentationSchemaRetrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - documentation
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+components:
+  schemas:
+    Company:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Nombre
+          maxLength: 60
+        full_name:
+          type: string
+          title: Nombre Completo
+          maxLength: 100
+        nit:
+          type: string
+          maxLength: 20
+        tag:
+          type: string
+          maxLength: 255
+        website:
+          type: string
+          format: uri
+          nullable: true
+          title: Página Web
+          maxLength: 50
+        street:
+          type: string
+          nullable: true
+          title: Dirección
+        city:
+          type: string
+          nullable: true
+          title: Ciudad
+          maxLength: 40
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        phone:
+          type: string
+          nullable: true
+          title: Teléfono
+          maxLength: 15
+        active:
+          type: boolean
+          title: Estado
+        menus:
+          type: array
+          items:
+            type: integer
+        zone:
+          type: integer
+          nullable: true
+          title: Zona Principal
+        logo_url:
+          type: string
+          readOnly: true
+        background_url:
+          type: string
+          readOnly: true
+        wiki_icon_url:
+          type: string
+          readOnly: true
+        wiki_title:
+          type: string
+          nullable: true
+          title: Título del al wiki
+          maxLength: 50
+        emergencies_allowed:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmergencyTypes'
+        extra_zones:
+          type: array
+          items:
+            type: integer
+        extra_points:
+          type: array
+          items:
+            type: integer
+        extra_lines:
+          type: array
+          items:
+            type: integer
+        required_emergency_control_point:
+          type: boolean
+          title: Requiere un punto de control con la emergencia
+        extra_emergency_categories:
+          type: string
+          nullable: true
+          title: Clasificaciones opcional de las emergencias
+        incident_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/Incident'
+        organized_categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizedCategories'
+          readOnly: true
+      required:
+      - emergencies_allowed
+      - full_name
+      - incident_types
+      - menus
+      - name
+      - nit
+      - tag
+    Configuration:
+      type: object
+      properties:
+        key:
+          type: string
+          maxLength: 200
+        value:
+          type: string
+          maxLength: 200
+      required:
+      - key
+      - value
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          nullable: true
+          title: Nombres
+          maxLength: 255
+        last_name:
+          type: string
+          nullable: true
+          title: Apellidos
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        company:
+          type: integer
+        phone:
+          type: string
+          nullable: true
+          title: Teléfono
+          maxLength: 20
+        address:
+          type: string
+          nullable: true
+          title: Dirección
+        description:
+          type: string
+          nullable: true
+          title: Descripción
+        user_created:
+          type: integer
+          readOnly: true
+          title: Subido por
+        is_active:
+          type: boolean
+          title: Activo
+      required:
+      - company
+    CustomTokenObtainPair:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - email
+      - password
+    Device:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        device_token:
+          type: string
+          maxLength: 200
+        device_type:
+          type: string
+          maxLength: 20
+      required:
+      - device_token
+      - device_type
+    Emergency:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        latitude:
+          type: string
+          nullable: true
+          title: Latitud
+          maxLength: 50
+        longitude:
+          type: string
+          nullable: true
+          title: Longitud
+          maxLength: 50
+        start_time:
+          type: string
+          format: date-time
+          nullable: true
+          title: Fecha de Inicio
+        finish_time:
+          type: string
+          format: date-time
+          nullable: true
+          title: Fecha de terminación
+        register_date:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de Registro
+        description:
+          type: string
+          title: Descripción
+        emergency_type:
+          type: integer
+          title: Tipo de Emergencia
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          title: Estado
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadOnlyImages'
+          nullable: true
+          readOnly: true
+        user_created_id:
+          type: integer
+          title: Subido por
+          readOnly: true
+        company:
+          type: integer
+        control_point:
+          type: integer
+          nullable: true
+          title: Punto de control más cercano
+        extra_category:
+          type: string
+          nullable: true
+          title: Categoría
+          description: Categoría adicional definida en la compañía
+          maxLength: 256
+        avatar_url:
+          type: string
+          format: uri
+          readOnly: true
+          nullable: true
+          title: URL del Avatar
+      required:
+      - company
+      - emergency_type
+    EmergencyTypes:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        icon:
+          type: string
+          format: uri
+        market:
+          type: string
+          format: uri
+        area_1:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Area de Incidencia 1
+        area_2:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Area de Incidencia 2
+        area_3:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Area de Incidencia 3
+      required:
+      - icon
+      - market
+      - name
+    FormTypeEnum:
+      enum:
+      - FULL_FORM
+      - SMALL_FORM
+      type: string
+      description: |-
+        * `FULL_FORM` - Formulario Completo
+        * `SMALL_FORM` - Formulario Reducido
+    GCMDevice:
+      type: object
+      properties:
+        registration_id:
+          type: string
+      required:
+      - registration_id
+    GisFeatureCollectionEnum:
+      type: string
+      enum:
+      - FeatureCollection
+    GisFeatureEnum:
+      type: string
+      enum:
+      - Feature
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 150
+      required:
+      - name
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          title: Nombre
+          maxLength: 255
+        image:
+          type: string
+          format: uri
+          title: Imagen
+        thumbnail:
+          type: string
+          format: uri
+          readOnly: true
+          nullable: true
+        register_date:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de Registro
+      required:
+      - image
+    Incident:
+      type: object
+      properties:
+        company:
+          type: integer
+          title: Empresa
+        title:
+          type: string
+          title: Título
+          maxLength: 100
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Imagen
+        description:
+          type: string
+          nullable: true
+          title: Descripción
+        order:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Orden
+        link:
+          type: string
+          format: uri
+          nullable: true
+          title: Enlace
+          maxLength: 255
+        emergency_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmergencyTypes'
+      required:
+      - company
+      - emergency_types
+      - order
+      - title
+    LineMap:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureEnum'
+        id:
+          type: integer
+          readOnly: true
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - MultiLineString
+            coordinates:
+              type: array
+              items:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: number
+                    format: float
+                  example:
+                  - 12.9721
+                  - 77.5933
+                  minItems: 2
+                  maxItems: 3
+                example:
+                - - 22.4707
+                  - 70.0577
+                - - 12.9721
+                  - 77.5933
+                minItems: 2
+        properties:
+          type: object
+          properties:
+            name:
+              type: string
+              nullable: true
+              maxLength: 50
+            description:
+              type: string
+              nullable: true
+            timestamp:
+              type: string
+              format: date
+              nullable: true
+            begin:
+              type: string
+              format: date
+              nullable: true
+            end:
+              type: string
+              format: date
+              nullable: true
+            altitudeMode:
+              type: string
+              nullable: true
+              maxLength: 50
+            tessellate:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            extrude:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            visibility:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            drawOrder:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            icon:
+              type: string
+              nullable: true
+              maxLength: 255
+            snippet:
+              type: string
+              nullable: true
+              maxLength: 255
+            shape_length:
+              type: number
+              format: double
+              nullable: true
+            tag:
+              type: string
+              nullable: true
+              maxLength: 255
+            color:
+              type: string
+              title: Color de la línea
+              maxLength: 7
+    LineMapList:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureCollectionEnum'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineMap'
+    Logout:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+      required:
+      - refresh_token
+    Menu:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        company:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+        menu_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+          readOnly: true
+      required:
+      - name
+    MenuItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        page:
+          type: string
+          readOnly: true
+          nullable: true
+        description:
+          type: string
+          description: Descripción
+        page_url:
+          type: string
+          readOnly: true
+          nullable: true
+        video:
+          type: string
+          readOnly: true
+          nullable: true
+        menu:
+          type: string
+          readOnly: true
+          nullable: true
+        parent_id:
+          type: string
+          readOnly: true
+          nullable: true
+        tree_id:
+          type: integer
+          readOnly: true
+        level:
+          type: integer
+          readOnly: true
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItemNested'
+          readOnly: true
+      required:
+      - title
+    MenuItemNested:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        page:
+          type: string
+          readOnly: true
+          nullable: true
+        video:
+          type: string
+          format: uri
+          nullable: true
+        menu:
+          type: string
+          readOnly: true
+          nullable: true
+        parent_id:
+          type: string
+          readOnly: true
+          nullable: true
+        tree_id:
+          type: integer
+          readOnly: true
+        level:
+          type: integer
+          readOnly: true
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItemNested'
+        page_url:
+          type: string
+          nullable: true
+      required:
+      - children
+      - page_url
+      - title
+    Nested:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Nombre
+          maxLength: 60
+        project_name:
+          type: string
+          nullable: true
+          title: Nombre del proyecto
+          maxLength: 255
+        alias:
+          type: string
+          nullable: true
+          title: Nombre Corto
+          maxLength: 255
+        full_name:
+          type: string
+          title: Nombre Completo
+          maxLength: 100
+        slug:
+          type: string
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        nit:
+          type: string
+          maxLength: 20
+        tag:
+          type: string
+          maxLength: 255
+        website:
+          type: string
+          format: uri
+          nullable: true
+          title: Página Web
+          maxLength: 50
+        street:
+          type: string
+          nullable: true
+          title: Dirección
+        city:
+          type: string
+          nullable: true
+          title: Ciudad
+          maxLength: 40
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        phone:
+          type: string
+          nullable: true
+          title: Teléfono
+          maxLength: 15
+        active:
+          type: boolean
+          title: Estado
+        logo:
+          type: string
+          format: uri
+          nullable: true
+        public_background:
+          type: string
+          format: uri
+          nullable: true
+          title: Imagen de Background público
+        sidebar_background:
+          type: string
+          format: uri
+          nullable: true
+        background:
+          type: string
+          format: uri
+          nullable: true
+        wiki_icon:
+          type: string
+          format: uri
+          nullable: true
+        wiki_title:
+          type: string
+          nullable: true
+          title: Título del al wiki
+          maxLength: 50
+        form_type:
+          $ref: '#/components/schemas/FormTypeEnum'
+        public_title_form:
+          type: string
+          nullable: true
+          title: Título del formulario público
+          maxLength: 50
+        event_name:
+          type: string
+          nullable: true
+          title: Nombre de los Eventos
+          description: |-
+            Nombre con que se denominan los eventos dentro de esta compañía,
+                                ejemplo: Incidentes, alertas..., por defecto son Emergencias
+          maxLength: 50
+        category_label:
+          type: string
+          nullable: true
+          title: Label para la Categoría
+          description: Texto que se mostrará en el input de la categoría
+          maxLength: 50
+        required_emergency_control_point:
+          type: boolean
+          title: Requiere un punto de control con la emergencia
+        allow_create_emergencies_by_web:
+          type: boolean
+          title: ¿Permitir crear emergencias vía página web?
+        extra_emergency_categories:
+          type: string
+          nullable: true
+          title: Clasificaciones opcional de las emergencias
+        zone:
+          type: integer
+          nullable: true
+          title: Zona Principal
+        emergencies_allowed:
+          type: array
+          items:
+            type: integer
+        extra_zones:
+          type: array
+          items:
+            type: integer
+        extra_points:
+          type: array
+          items:
+            type: integer
+        extra_lines:
+          type: array
+          items:
+            type: integer
+      required:
+      - full_name
+      - name
+      - nit
+      - slug
+      - tag
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Título
+          maxLength: 200
+        body:
+          type: string
+          title: Contenido
+        register_date:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de Registro
+      required:
+      - body
+      - title
+    OrganizedCategories:
+      type: object
+      properties:
+        group:
+          type: string
+        options:
+          type: array
+          items: {}
+      required:
+      - group
+      - options
+    Page:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Título
+          maxLength: 200
+        subtitle:
+          type: string
+          description: Subtítulo
+          maxLength: 255
+        content:
+          type: string
+          nullable: true
+          title: Contenido
+        more_information:
+          type: string
+          nullable: true
+          title: Más Información
+        links:
+          type: string
+          nullable: true
+        contacts:
+          type: string
+          nullable: true
+          title: Contactos
+        description:
+          type: string
+          description: Descripción
+        video:
+          type: string
+          format: uri
+          nullable: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+        keywords:
+          type: string
+          description: Lista separada por comas, usado internamente para hacer búsquedas
+        published:
+          type: boolean
+      required:
+      - title
+    PatchedEmergency:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        latitude:
+          type: string
+          nullable: true
+          title: Latitud
+          maxLength: 50
+        longitude:
+          type: string
+          nullable: true
+          title: Longitud
+          maxLength: 50
+        start_time:
+          type: string
+          format: date-time
+          nullable: true
+          title: Fecha de Inicio
+        finish_time:
+          type: string
+          format: date-time
+          nullable: true
+          title: Fecha de terminación
+        register_date:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de Registro
+        description:
+          type: string
+          title: Descripción
+        emergency_type:
+          type: integer
+          title: Tipo de Emergencia
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          title: Estado
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadOnlyImages'
+          nullable: true
+          readOnly: true
+        user_created_id:
+          type: integer
+          title: Subido por
+          readOnly: true
+        company:
+          type: integer
+        control_point:
+          type: integer
+          nullable: true
+          title: Punto de control más cercano
+        extra_category:
+          type: string
+          nullable: true
+          title: Categoría
+          description: Categoría adicional definida en la compañía
+          maxLength: 256
+        avatar_url:
+          type: string
+          format: uri
+          readOnly: true
+          nullable: true
+          title: URL del Avatar
+    PointMap:
+      type: object
+      description: A class to serialize locations as GeoJSON compatible data
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureEnum'
+        id:
+          type: string
+          readOnly: true
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+                format: float
+              example:
+              - 12.9721
+              - 77.5933
+              minItems: 2
+              maxItems: 3
+        properties:
+          type: object
+          properties:
+            point_id:
+              type: integer
+              readOnly: true
+            name:
+              type: string
+              nullable: true
+              maxLength: 50
+            description:
+              type: string
+              nullable: true
+            timestamp:
+              type: string
+              format: date
+              nullable: true
+            begin:
+              type: string
+              format: date
+              nullable: true
+            end:
+              type: string
+              format: date
+              nullable: true
+            altitudeMode:
+              type: string
+              nullable: true
+              maxLength: 50
+            tessellate:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            extrude:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            visibility:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            drawOrder:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            icon:
+              type: string
+              nullable: true
+              maxLength: 255
+            snippet:
+              type: string
+              nullable: true
+              maxLength: 255
+            tag:
+              type: string
+              nullable: true
+              maxLength: 255
+    PointMapList:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureCollectionEnum'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/PointMap'
+    ReadOnlyImages:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          title: Nombre
+          maxLength: 255
+        image:
+          type: string
+          format: uri
+          readOnly: true
+        user_created:
+          type: string
+          readOnly: true
+        thumbnail:
+          type: string
+          format: uri
+          readOnly: true
+        register_date:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de Registro
+    Register:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          title: Correo Electrónico
+          maxLength: 254
+        password:
+          type: string
+          pattern: ^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,32}$
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+      required:
+      - email
+      - password
+    StatusEnum:
+      enum:
+      - 'ON'
+      - 'OFF'
+      - ELIMINATED
+      type: string
+      description: |-
+        * `ON` - Activa
+        * `OFF` - Inactiva
+        * `ELIMINATED` - Eliminada
+    TokenOutput:
+      type: object
+      properties:
+        refresh:
+          type: string
+          title: Refresh token
+        access:
+          type: string
+          title: Access token
+      required:
+      - access
+      - refresh
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - refresh
+    UserModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        avatar:
+          type: string
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Correo Electrónico
+          maxLength: 254
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        roles:
+          type: string
+          readOnly: true
+        companies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+      required:
+      - companies
+      - email
+      - groups
+      - username
+    ZoneMap:
+      type: object
+      description: A class to serialize locations as GeoJSON compatible data
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureEnum'
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - MultiPolygon
+            coordinates:
+              type: array
+              items:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: number
+                      format: float
+                    example:
+                    - 12.9721
+                    - 77.5933
+                    minItems: 2
+                    maxItems: 3
+                  example:
+                  - - 22.4707
+                    - 70.0577
+                  - - 12.9721
+                    - 77.5933
+                  minItems: 4
+                example:
+                - - - 0.0
+                    - 0.0
+                  - - 0.0
+                    - 50.0
+                  - - 50.0
+                    - 50.0
+                  - - 50.0
+                    - 0.0
+                  - - 0.0
+                    - 0.0
+        properties:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            name:
+              type: string
+              nullable: true
+              maxLength: 50
+            description:
+              type: string
+              nullable: true
+            timestamp:
+              type: string
+              format: date
+              nullable: true
+            begin:
+              type: string
+              format: date
+              nullable: true
+            end:
+              type: string
+              format: date
+              nullable: true
+            altitudeMode:
+              type: string
+              nullable: true
+              maxLength: 50
+            tessellate:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            extrude:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            visibility:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            drawOrder:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+              nullable: true
+            icon:
+              type: string
+              nullable: true
+              maxLength: 255
+            snippet:
+              type: string
+              nullable: true
+              maxLength: 255
+            tag:
+              type: string
+              nullable: true
+              maxLength: 255
+            border_color:
+              type: string
+              title: Color del Borde
+              maxLength: 7
+            background_color:
+              type: string
+              title: Color de Fondo
+              maxLength: 7
+            opacity:
+              type: number
+              format: double
+              maximum: 1.0
+              minimum: 0.0
+              description: Establece la opacidad entre 0 (transparente) y 1 (opaco).
+    ZoneMapList:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureCollectionEnum'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZoneMap'
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+servers:
+- url: https://chilasi.asidigital.co
