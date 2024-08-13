@@ -1,20 +1,14 @@
 import tw from 'twrnc';
 import React from 'react'
 import { View, Image } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
-import Phone from '../../screens/Phone';
-import Home from '../../screens/Home';
-import Search from '../../screens/SearchView';
-import Mapas from '../../screens/Mapas';
-import Clinic from '../../screens/Clinic';
-import LocalPolice from '../../screens/LocalPolice';
-import Login from '../stacks/NavigationStackLogin'
+import Class from '../../screens/Alerts';
+import Creacion from '../../screens/emergenci/CreateAlert'
 
 const Stack = createStackNavigator();
-
-
+ 
 const CustomHeaderTitle = () => (
     <Image
         source={require('../../assets/tituloHeader.png')} // Ruta de la imagen
@@ -33,7 +27,7 @@ export default function NavigationClass() {
             },
             headerTitle: () => <CustomHeaderTitle />,
         }}>
-            <Stack.Screen name="Principio" component={Home} options={{
+            <Stack.Screen name="Alertas" component={Class} options={{
                 headerLeft: () => {
                     return(
                         <View style={tw`p-2 left-5 bottom-4`}>
@@ -46,12 +40,7 @@ export default function NavigationClass() {
                     )
                 }
             }}/>
-            <Stack.Screen name="Telefono" component={Phone}/>
-            <Stack.Screen name="buscador" component={Search}/>
-            <Stack.Screen name="Mapa" component={Mapas}/>
-            <Stack.Screen name="Clinicas" component={Clinic}/>
-            <Stack.Screen name="Cuadrantes" component={LocalPolice}/>
-            <Stack.Screen name="Login" component={Login}/>
+            <Stack.Screen name="Creacion" component={Creacion}/>
         </Stack.Navigator>
     );
 }

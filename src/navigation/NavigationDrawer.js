@@ -19,9 +19,9 @@ export default function NavigationDrawer() {
                     <Icon name="home" color={color} size={size}/>
                 ),
             }}/>
-            <Drawer.Screen name="Clases" component={TapNavigationCall} options={{
+            <Drawer.Screen name="Alertas" component={TapNavigationCall} options={{
                 drawerIcon: ({ color, size }) => (
-                    <Icon name="layer-group" color={color} size={size}/>
+                    <Icon name="exclamation-triangle" color={color} size={size}/>
                 ),
             }}/>
             <Drawer.Screen name="Directorio" component={TapNavigationDirectory} options={{
