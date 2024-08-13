@@ -10,7 +10,10 @@ import Search from '../../screens/SearchView';
 import Mapas from '../../screens/Mapas';
 import Clinic from '../../screens/Clinic';
 import LocalPolice from '../../screens/LocalPolice';
+<<<<<<< HEAD
 import Login from '../stacks/NavigationStackLogin'
+=======
+>>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
 
 const Stack = createStackNavigator();
 
@@ -51,7 +54,10 @@ export default function NavigationClass() {
             <Stack.Screen name="Mapa" component={Mapas}/>
             <Stack.Screen name="Clinicas" component={Clinic}/>
             <Stack.Screen name="Cuadrantes" component={LocalPolice}/>
+<<<<<<< HEAD
             <Stack.Screen name="Login" component={Login}/>
+=======
+>>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
         </Stack.Navigator>
     );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../slices/userSlice'
@@ -59,5 +60,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+=======
+import { View, Text } from 'react-native';
+import Datos from '../../database/ListaDatos'
+import Cuadrantes from '../components/Cuadrantes';
+
+const Info = () => {
+  const lista = Datos();
+  return (
+    <View>
+      <Text>informacion</Text>
+      <Cuadrantes/>
+    </View>
+  );
+}
+>>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
 
 export default Info;

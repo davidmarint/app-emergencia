@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import tw from 'twrnc'
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, Image, TouchableOpacity, Alert} from 'react-native';
@@ -77,6 +78,19 @@ const SingIn = () => {
                      <Text style={tw`text-white font-bold`}>Entrar Sin Registrarse</Text>
                 </TouchableOpacity>
             </View>
+=======
+
+import tw from 'twrnc'
+import React from 'react';
+import { View, Text, Button} from 'react-native';
+
+const SingIn = () => {
+    
+    return (
+        <View style={tw`flex-1 justify-center items-center`}>
+            <Text>Sing In</Text>
+            <Button title='Login' color="EC5B70"/>
+>>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
         </View>
     )}
 
