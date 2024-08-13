@@ -7,16 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-<<<<<<< HEAD
     "gen-api": "npx @openapitools/openapi-generator-cli generate -i ./spec/schema.yaml -g typescript-axios -o src/api-client --additional-properties withSeparateModelsAndApi=true,useSingleRequestParameter=true,apiPackage=api,modelPackage=models"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.24.0",
-=======
-    "gen-api": "npx @openapitools/openapi-generator-cli generate -i ./spec/schema.yml -g javascript -o src/api-client --additional-properties withSeparateModelsAndApi=true,useSingleRequestParameter=true,apiPackage=api,modelPackage=models"
-  },
-  "dependencies": {
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-picker/picker": "2.7.5",
     "@react-navigation/bottom-tabs": "^6.1.0",
@@ -24,19 +18,13 @@
     "@react-navigation/native": "^6.0.0",
     "@react-navigation/stack": "^6.3.17",
     "@reduxjs/toolkit": "^2.2.5",
-<<<<<<< HEAD
     "@types/react": "~18.2.79",
     "axios": "^1.7.2",
-=======
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
     "expo": "^51.0.11",
     "expo-location": "~17.0.1",
     "expo-status-bar": "~1.12.1",
     "firebase": "^10.8.0",
-<<<<<<< HEAD
     "openapi": "^1.0.1",
-=======
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
     "react": "18.2.0",
     "react-native": "0.74.2",
     "react-native-collapsible": "^1.6.1",
@@ -52,12 +40,8 @@
     "react-native-vector-icons": "^10.0.2",
     "react-redux": "^9.1.2",
     "redux-thunk": "^3.1.0",
-<<<<<<< HEAD
     "twrnc": "^3.6.5",
     "typescript": "~5.3.3"
-=======
-    "twrnc": "^3.6.5"
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
   },
   "devDependencies": {
     "@babel/core": "^7.24.0"

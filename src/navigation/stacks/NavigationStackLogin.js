@@ -13,11 +13,7 @@ const Stack = createStackNavigator();
 export default function NavigationClass() {
     //const navigation = useNavigation();
     return(
-<<<<<<< HEAD
         <Stack.Navigator  initialRouteName='entrar' screenOptions={{headerShown: false,}}>
-=======
-        <Stack.Navigator  initialRouteName='entrar'>
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
             <Stack.Screen name="entrar" component={SignIn} 
             // options={{
             //     headerLeft: () => {
@@ -25,11 +21,7 @@ export default function NavigationClass() {
             //             <View style={tw`p-2 left-5 bottom-4`}>
             //             <Icon name="bars" 
             //             color="#172558" 
-<<<<<<< HEAD
             //             size={25}  
-=======
-            //             size={25} 
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
             //             onPress={() =>navigation.dispatch(DrawerActions.openDrawer)}
             //             />
             //             </View>

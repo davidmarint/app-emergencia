@@ -2,11 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import Home from './stacks/NavigationStackHome';
-<<<<<<< HEAD
 import Call from './stacks/NavigationStackAlert';
-=======
-import Call from './stacks/NavigationStackClass';
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
 import ListaNum from './stacks/NavigationStackPhone'
 
 const Tap = createBottomTabNavigator();
@@ -38,15 +34,9 @@ export default function TapNavigationCall(){
                 component={Call}
                 options={{ 
                     tabBarIcon: ({color, size}) => (
-<<<<<<< HEAD
                         <Icon name="exclamation-triangle" color={color} size={size} />
                         ),
                         tabBarLabel: 'Alertas',
-=======
-                        <Icon name="layer-group" color={color} size={size} />
-                        ),
-                        tabBarLabel: 'Clases',
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
                 }} />
             <Tap.Screen 
                 name="Directorio" 
