@@ -1,5 +1,4 @@
 import tw from 'twrnc'
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, Image, TouchableOpacity, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -103,17 +102,6 @@ const SingUp = () => {
                 </TouchableOpacity>
                 <Text style={tw`text-white font-bold`}>{isLoading ? 'Registrando...' : 'Registrarse'}</Text>
             </View>
-=======
-import React from 'react';
-import { View, Text, Button} from 'react-native';
-
-const SingUp = () => {
-    
-    return (
-        <View style={tw`flex-1 justify-center items-center`}>
-            <Text>Sing Up</Text>
-            <Button title='Entrar' color="EC5B70"/>
->>>>>>> cafa3931626b3603a2dc56c924c253ffa47985b3
         </View>
     )}
 
