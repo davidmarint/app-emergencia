@@ -6,6 +6,7 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import Class from '../../screens/Alerts';
 import Creacion from '../../screens/emergenci/CreateAlert'
+import Mapa from '../../screens/emergenci/MapsAlerts'
 
 const Stack = createStackNavigator();
  
@@ -41,6 +42,7 @@ export default function NavigationClass() {
                 }
             }}/>
             <Stack.Screen name="Creacion" component={Creacion}/>
+            <Stack.Screen name="MapaAlerta" component={Mapa}/>
         </Stack.Navigator>
     );
 }

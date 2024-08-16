@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import FlatListComponent from '../components/generacion/ListAlerts'
 import { FAB } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import  Icon  from 'react-native-vector-icons/FontAwesome5';
 
 const Alerts = () => {
   //const lista = Datos();
@@ -16,7 +17,8 @@ const Alerts = () => {
       <FlatListComponent/>
       <FAB
     icon="plus"
-    style={tw`absolute m-4 right-0 bottom-0`}
+    color="#fbbf24"
+    style={tw`absolute m-4 right-0 bottom-0 bg-blue-900`}
     onPress={() => navigation.navigate("Creacion")}
   />
     </View>

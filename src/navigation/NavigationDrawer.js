@@ -5,6 +5,7 @@ import TapNavigationHome from './NavigationTapsHome';
 import TapNavigationCall from './NavigationTapsCall';
 import TapNavigationDirectory from './NavigationTapsDirectory';
 import Info from '../screens/Info';
+import Prueva from '../screens/emergenci/MapsAlerts'
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +31,11 @@ export default function NavigationDrawer() {
                 ),
             }}/>
             <Drawer.Screen name="Info" component={Info} options={{
+                drawerIcon: ({ color, size }) => (
+                    <Icon name="info-circle" color={color} size={size}/>
+                ),
+            }}/>
+             <Drawer.Screen name="Prueva" component={Prueva} options={{
                 drawerIcon: ({ color, size }) => (
                     <Icon name="info-circle" color={color} size={size}/>
                 ),

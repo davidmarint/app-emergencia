@@ -6,5 +6,6 @@ export * from './reset-password-code-validate-request';
 export * from './reset-password-request';
 export * from './status-enum';
 export * from './token-output';
+export * from './token-refresh';
 export * from './user';
 export * from './user-create';

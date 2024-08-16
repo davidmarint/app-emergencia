@@ -17,38 +17,20 @@
 /**
  * 
  * @export
- * @interface User
+ * @interface TokenRefresh
  */
-export interface User {
-    /**
-     * 
-     * @type {number}
-     * @memberof User
-     */
-    'id': number;
+export interface TokenRefresh {
     /**
      * 
      * @type {string}
-     * @memberof User
+     * @memberof TokenRefresh
      */
-    'first_name'?: string;
+    'access': string;
     /**
      * 
      * @type {string}
-     * @memberof User
+     * @memberof TokenRefresh
      */
-    'last_name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
-    'email': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof User
-     */
-    'number_id'?: number | null;
+    'refresh': string;
 }
 

@@ -26,6 +26,8 @@ import type { CustomTokenObtainPair } from '../models';
 // @ts-ignore
 import type { TokenOutput } from '../models';
 // @ts-ignore
+import type { TokenRefresh } from '../models';
+// @ts-ignore
 import type { User } from '../models';
 // @ts-ignore
 import type { UserCreate } from '../models';
@@ -64,6 +66,41 @@ export const AuthenticateApiAxiosParamCreator = function (configuration?: Config
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(customTokenObtainPair, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Takes a refresh type JSON web token and returns an access type JSON web token if the refresh token is valid.
+         * @param {TokenRefresh} tokenRefresh 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mainUsersRefreshCreate: async (tokenRefresh: TokenRefresh, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tokenRefresh' is not null or undefined
+            assertParamExists('mainUsersRefreshCreate', 'tokenRefresh', tokenRefresh)
+            const localVarPath = `/api/main/users/refresh/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tokenRefresh, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -133,6 +170,18 @@ export const AuthenticateApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Takes a refresh type JSON web token and returns an access type JSON web token if the refresh token is valid.
+         * @param {TokenRefresh} tokenRefresh 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async mainUsersRefreshCreate(tokenRefresh: TokenRefresh, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenRefresh>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mainUsersRefreshCreate(tokenRefresh, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthenticateApi.mainUsersRefreshCreate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Registrar un nuevo Usuario
          * @summary Registrar un nuevo Usuario
          * @param {UserCreate} userCreate 
@@ -165,6 +214,15 @@ export const AuthenticateApiFactory = function (configuration?: Configuration, b
             return localVarFp.mainUsersLoginCreate(requestParameters.customTokenObtainPair, options).then((request) => request(axios, basePath));
         },
         /**
+         * Takes a refresh type JSON web token and returns an access type JSON web token if the refresh token is valid.
+         * @param {AuthenticateApiMainUsersRefreshCreateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mainUsersRefreshCreate(requestParameters: AuthenticateApiMainUsersRefreshCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<TokenRefresh> {
+            return localVarFp.mainUsersRefreshCreate(requestParameters.tokenRefresh, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Registrar un nuevo Usuario
          * @summary Registrar un nuevo Usuario
          * @param {AuthenticateApiMainUsersRegisterCreateRequest} requestParameters Request parameters.
@@ -189,6 +247,20 @@ export interface AuthenticateApiMainUsersLoginCreateRequest {
      * @memberof AuthenticateApiMainUsersLoginCreate
      */
     readonly customTokenObtainPair: CustomTokenObtainPair
+}
+
+/**
+ * Request parameters for mainUsersRefreshCreate operation in AuthenticateApi.
+ * @export
+ * @interface AuthenticateApiMainUsersRefreshCreateRequest
+ */
+export interface AuthenticateApiMainUsersRefreshCreateRequest {
+    /**
+     * 
+     * @type {TokenRefresh}
+     * @memberof AuthenticateApiMainUsersRefreshCreate
+     */
+    readonly tokenRefresh: TokenRefresh
 }
 
 /**
@@ -221,6 +293,17 @@ export class AuthenticateApi extends BaseAPI {
      */
     public mainUsersLoginCreate(requestParameters: AuthenticateApiMainUsersLoginCreateRequest, options?: RawAxiosRequestConfig) {
         return AuthenticateApiFp(this.configuration).mainUsersLoginCreate(requestParameters.customTokenObtainPair, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Takes a refresh type JSON web token and returns an access type JSON web token if the refresh token is valid.
+     * @param {AuthenticateApiMainUsersRefreshCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthenticateApi
+     */
+    public mainUsersRefreshCreate(requestParameters: AuthenticateApiMainUsersRefreshCreateRequest, options?: RawAxiosRequestConfig) {
+        return AuthenticateApiFp(this.configuration).mainUsersRefreshCreate(requestParameters.tokenRefresh, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

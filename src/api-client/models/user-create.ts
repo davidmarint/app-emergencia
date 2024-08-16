@@ -37,7 +37,7 @@ export interface UserCreate {
      * @type {number}
      * @memberof UserCreate
      */
-    'number_id': number;
+    'number_id'?: number | null;
     /**
      * 
      * @type {string}

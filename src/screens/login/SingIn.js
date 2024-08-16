@@ -35,7 +35,7 @@ const SingIn = () => {
   
 
     const onHandlerSigUp = () =>{
-        navigation.navigate("registro");
+        navigation.navigate("Registro");
     }
     const onHandlerHome = () =>{
         navigation.navigate("entrada");

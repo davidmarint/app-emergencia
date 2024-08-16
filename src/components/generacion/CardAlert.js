@@ -96,13 +96,17 @@ const CardAlert = (props) => {
     const envio = mostrar(orden)
     return(
     <View style={tw`items-center content-center`}>
-        <View style={tw`flex-row w-95/100 bg-slate-400 rounded-2xl shadow-xl p-3 `}>
-        <Icon name={envio.icono} size={40} color="rgb(23,37,84)" style={tw`p-2`} />
-        <View style={tw`justify-center max-w-75`}>
-                    <Text style={tw`text-lg font-semibold`}>{envio.texto}</Text>
+        <View style={tw`flex-row w-95/100 bg-blue-950 rounded-2xl shadow-xl p-3 `}>
+        <View style={tw` rounded-full bg-amber-400 h-16 w-16 justify-center items-center`}>
+        <Icon name={envio.icono} size={38} color="rgb(23,37,84)" style={tw``} />
+        </View>
+        <View style={tw`justify-center max-w-75 pl-3`}>
+                    <Text style={tw`text-lg font-semibold text-white`}>{envio.texto}</Text>
                     </View>
         </View>
+        <View style={tw`w-full h-15 border-2 border-amber-400 bg-amber-400 p-3 mt-2`} >
         <Text style={tw`text-lg font-semibold mb-2`}>Selecciona la ubicación:</Text>
+        </View>
         
     </View>
 )

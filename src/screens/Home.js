@@ -1,6 +1,6 @@
 import tw from 'twrnc'
 import React from 'react';
-import { View, Text, SafeAreaView, FlatList, ScrollView} from 'react-native';
+import { View, Text, SafeAreaView, FlatList, ScrollView, Image} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import BotonList from '../components/BotonList';
 import BotonDirection from '../components/BotonDirection';

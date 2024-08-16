@@ -23,6 +23,13 @@ const SingUp = () => {
             Alert.alert('Error', 'Todos los campos son obligatorios');
             return;
           }
+          
+          const uppercaseRegex = /[A-Z]/;
+            if (!uppercaseRegex.test(password)) {
+            Alert.alert('Error', 'La contraseña debe contener al menos una letra mayúscula.');
+            return;
+        }
+
           const numericIdNumber = parseInt(idNumber, 10);
         setIsLoading(true);
         const data = {
@@ -34,8 +41,13 @@ const SingUp = () => {
           };
           try {
         const response = await authentication.mainUsersRegisterCreate({userCreate:data})
-       if(response.status==200){
+       if(response.status==200 || 201){
         Alert.alert('Registro exitoso', `Nombre: ${firstName} ${lastName}\nEmail: ${email}`);
+        setFirstName('');
+        setLastName('');
+        setIdNumber('');
+        setEmail('');
+                setPassword('');
         navigation.navigate('entrar')
        }  else {
         Alert.alert('Registro erroneo vuelva a intentar');}

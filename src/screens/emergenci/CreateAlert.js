@@ -1,9 +1,11 @@
 import tw from 'twrnc'
 import React, {useState, useEffect, useCallback} from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import {Picker} from '@react-native-picker/picker'
 import CardAlert from '../../components/generacion/CardAlert';
 import MapView, { Marker } from 'react-native-maps';
+import *as Location from 'expo-location';
+import { emergenciesApi } from '../../api/index';
 
 const CreateAlert = () => {
   //const lista = Datos();
@@ -14,7 +16,9 @@ const CreateAlert = () => {
     latitude : 4.103093,   //4.1340
     longitude: -73.590991, //-73.6266
 });
-  
+
+
+
 useEffect(() =>{
   getLoscationPermission();
 }, [])
@@ -27,7 +31,7 @@ async function getLoscationPermission() {
                   return;
                        // Aquí podrías mostrar un mensaje al usuario informándole que necesita otorgar permisos.
                       } else {
-                      console.log('Se otorgaron los permisos para acceder a la ubicación.');
+                      //console.log('Se otorgaron los permisos para acceder a la ubicación.');
                       let location = await Location.getCurrentPositionAsync({});
                       const current = {
                           latitude: location.coords.latitude,
@@ -55,15 +59,35 @@ async function getLoscationPermission() {
     checkFormValidity();
   }, [selectedValue, location, checkFormValidity]);
 
-  const handleSubmit = () => {
-    if (isButtonEnabled) {
-      // Aquí va tu lógica para enviar los datos
-      console.log('Datos enviados:', {selectedValue, location });
+  const handleSubmit = async () => {
+    const numericIdNumber = parseInt(selectedValue, 10)
+    const emergencyObjet={
+      "latitude": location.latitude,
+      "longitude": location.longitude,
+      "status": "active",
+      "user": 1,
+      "emergency_type": numericIdNumber
+    }
+    if (isButtonEnabled) { 
+  try {
+    
+  const response = await emergenciesApi.mainEmergenciesEmergencyCreate({emergency:emergencyObjet})
+  if(response.status==200||201){
+    console.log('Datos enviados:', {emergencyObjet});
+    } 
+
+    } catch (error) {
+   console.error("Error al enviar la alerta:", error);
+ }
+  
     }
   };
 
   return (
     <View style={tw`h-full`}>
+      <View style={tw`h-1/12 border-2 border-amber-400 bg-amber-400 p-3`} >
+            <Text style={tw`text-xl font-bold text-blue-950 `}>Creacion de Alertas</Text>
+            </View>
       <View style={tw`border border-gray-400 rounded p-2 m-2 bg-blue-950 h-1/10`}>
             <Picker
             style={tw`h-10  text-white text-xl`}
@@ -87,8 +111,9 @@ async function getLoscationPermission() {
             </Picker>
         </View>
     <CardAlert orden={selectedValue}/>
+    <View style={tw`border-t-2 border-b-2 border-blue-950`}>
       <MapView
-        style={tw`w-full h-64 mb-4`}
+        style={tw`w-full h-64`}
         initialRegion={{
           latitude: origin.latitude,
           longitude: origin.longitude,
@@ -104,9 +129,11 @@ async function getLoscationPermission() {
           />
         )}
       </MapView>
+      </View>
+      <View  style={tw`items-center justify-center`}>
       <TouchableOpacity
   style={[
-    tw`p-4 rounded-2xl items-center justify-center`,
+    tw`p-4 rounded-2xl items-center justify-center mt-4 w-2/3`,
     { backgroundColor: isButtonEnabled ? '#007AFF' : '#A9A9A9' }
   ]}
   onPress={handleSubmit}
@@ -114,6 +141,7 @@ async function getLoscationPermission() {
 >
   <Text style={tw`text-sm font-bold text-white`}>Enviar</Text>
 </TouchableOpacity>
+</View>
     </View>
   );
 }

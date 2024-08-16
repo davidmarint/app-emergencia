@@ -10,7 +10,7 @@ import Search from '../../screens/SearchView';
 import Mapas from '../../screens/Mapas';
 import Clinic from '../../screens/Clinic';
 import LocalPolice from '../../screens/LocalPolice';
-import Login from '../stacks/NavigationStackLogin'
+import Login from '../../screens/login/SingIn'
 
 const Stack = createStackNavigator();
 

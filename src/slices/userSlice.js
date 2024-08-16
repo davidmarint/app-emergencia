@@ -22,6 +22,7 @@ export const signIn = createAsyncThunk(
        }
       //console.log(response.data);
        await AsyncStorage.setItem('userToken', response.data.access);
+       await AsyncStorage.setItem('refreshToken', response.data.refresh);
       return response.data;
       
     } catch (error) {

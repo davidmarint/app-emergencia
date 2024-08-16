@@ -20,5 +20,6 @@ models/reset-password-request.ts
 models/reset-password.ts
 models/status-enum.ts
 models/token-output.ts
+models/token-refresh.ts
 models/user-create.ts
 models/user.ts

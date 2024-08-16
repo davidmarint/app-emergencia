@@ -29,7 +29,7 @@ const Info = () => {
       <Text style={styles.title}>Información</Text>
       <Text>Ususario numero, {data.id}</Text>
       <Text>Bienvenido, {data.first_name} {data.last_name}</Text>
-      <Text>Email: {data.email}</Text>  
+      <Text>Email: {data.email}</Text>   
       {/* Aquí puedes añadir más información del usuario si lo deseas */}
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutButtonText}>Cerrar Sesión</Text>
