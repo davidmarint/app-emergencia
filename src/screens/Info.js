@@ -12,7 +12,6 @@ const Info = () => {
   const { data, loading, error } = useCurrentUser()
  
   console.log(data)
-  console.log(error)
 
   const handleLogout = () => {
     dispatch(logout());
@@ -27,9 +26,9 @@ const Info = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Información</Text>
-      <Text>Ususario numero, {data.id}</Text>
+      {/* <Text>Ususario numero, {data.id}</Text>
       <Text>Bienvenido, {data.first_name} {data.last_name}</Text>
-      <Text>Email: {data.email}</Text>   
+      <Text>Email: {data.email}</Text>    */}
       {/* Aquí puedes añadir más información del usuario si lo deseas */}
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutButtonText}>Cerrar Sesión</Text>

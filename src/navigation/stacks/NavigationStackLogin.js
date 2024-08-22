@@ -27,7 +27,9 @@ export default function NavigationClass() {
                  headerShown: false, 
             }}/>
             <Stack.Screen name="Registro" component={SignUp}/>
-            <Stack.Screen name="entrada" component={NavigationDrawer}/> 
+            <Stack.Screen name="entrada" component={NavigationDrawer} options={{
+                 headerShown: false, 
+            }}/> 
         </Stack.Navigator>
     );
 }

@@ -11,6 +11,16 @@ const initialState = {
   error: null,
 };
 
+const storeTokens = async (accessToken, refreshToken) => {
+  try {
+    await AsyncStorage.setItem('userToken', accessToken);
+    await AsyncStorage.setItem('refreshToken', refreshToken);
+  } catch (error) {
+    console.error('Error al almacenar los tokens:', error);
+  }
+};
+
+
 export const signIn = createAsyncThunk(
   'user/signIn',
   async (payload, thunkAPI) => {
@@ -21,8 +31,8 @@ export const signIn = createAsyncThunk(
            return thunkAPI.rejectWithValue({error: 'Algo salio mal'})
        }
       //console.log(response.data);
-       await AsyncStorage.setItem('userToken', response.data.access);
-       await AsyncStorage.setItem('refreshToken', response.data.refresh);
+      const { access, refresh } = response.data;
+      await storeTokens(access, refresh);
       return response.data;
       
     } catch (error) {

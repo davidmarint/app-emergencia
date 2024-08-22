@@ -14,6 +14,12 @@ const access = async () =>{
   const token = await AsyncStorage.getItem('userToken');
   return(token);
 }
+
+const refreshToken = async () =>{
+  const refresh = await AsyncStorage.getItem('refreshToken');
+  return(refresh);
+}
+console.log(refreshToken(),access())
 //const navigation = useNavigation();
 
 axiosInstance.interceptors.request.use(
@@ -44,8 +50,8 @@ axiosInstance.interceptors.response.use(
           throw new Error('No refresh token available');
         }
 
-        const tokenRefresh = { refresh: refreshTokenValue };
-        const { data } = await authentication.mainUsersRefreshCreate(tokenRefresh);
+        const tokenRefreshs = { refresh: refreshTokenValue };
+        const { data } = await authentication.mainUsersRefreshCreate({tokenRefresh:tokenRefreshs});
 
         if (!data || !data.access) {
           throw new Error('Invalid response from refresh token endpoint');

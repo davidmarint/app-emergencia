@@ -6,6 +6,8 @@ import CardAlert from '../../components/generacion/CardAlert';
 import MapView, { Marker } from 'react-native-maps';
 import *as Location from 'expo-location';
 import { emergenciesApi } from '../../api/index';
+import { useNavigation } from '@react-navigation/native';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 
 const CreateAlert = () => {
   //const lista = Datos();
@@ -16,8 +18,8 @@ const CreateAlert = () => {
     latitude : 4.103093,   //4.1340
     longitude: -73.590991, //-73.6266
 });
-
-
+const navigation = useNavigation();
+const { data, loading, error } = useCurrentUser()
 
 useEffect(() =>{
   getLoscationPermission();
@@ -65,7 +67,7 @@ async function getLoscationPermission() {
       "latitude": location.latitude,
       "longitude": location.longitude,
       "status": "active",
-      "user": 1,
+      "user": data.id,
       "emergency_type": numericIdNumber
     }
     if (isButtonEnabled) { 
@@ -74,6 +76,8 @@ async function getLoscationPermission() {
   const response = await emergenciesApi.mainEmergenciesEmergencyCreate({emergency:emergencyObjet})
   if(response.status==200||201){
     console.log('Datos enviados:', {emergencyObjet});
+    Alert.alert('La alerta ha sido creada');
+    navigation.navigate("Alertas");
     } 
 
     } catch (error) {
@@ -96,13 +100,13 @@ async function getLoscationPermission() {
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
             >
               <Picker.Item label="Seleccionar" value="14"/>
-              <Picker.Item label="Robo" value="1"/>
-              <Picker.Item label="Incendio" value="2" />
-              <Picker.Item label="Riña" value="3" />
-              <Picker.Item label="Inundación" value="4" />
-              <Picker.Item label="Accidente de Trancito" value="5" />
-              <Picker.Item label="Urgencia Medica" value="6" />
-              <Picker.Item label="Persona Sospechosa" value="7" />
+              <Picker.Item label="Robo" value="2"/>
+              <Picker.Item label="Incendio" value="3" />
+              <Picker.Item label="Riña" value="4" />
+              <Picker.Item label="Inundación" value="5" />
+              <Picker.Item label="Accidente de Trancito" value="6" />
+              <Picker.Item label="Urgencia Medica" value="7" />
+              <Picker.Item label="Persona Sospechosa" value="8" />
               <Picker.Item label="Violencia Intrafamiliar" value="9" />
               <Picker.Item label="Daño en servicio publico" value="10" />
               <Picker.Item label="Exploción" value="11" />
@@ -141,6 +145,11 @@ async function getLoscationPermission() {
 >
   <Text style={tw`text-sm font-bold text-white`}>Enviar</Text>
 </TouchableOpacity>
+{isButtonEnabled ? (
+  <Text style={tw`mt-2 text-blue-700`}>Recuerda que al enviar la alerta todos pondran verla</Text>
+) : (
+  <Text style={tw`mt-2 text-gray-500`}></Text>
+)}
 </View>
     </View>
   );

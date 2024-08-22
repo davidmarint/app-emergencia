@@ -11,43 +11,43 @@ const CardAlert = (props) => {
     const mostrar =(Value) =>{
         let resul;
         switch(Value){
-            case "1":
+            case "2":
                 resul = {
                     icono: "mask",
                     texto: 'Reporta un robo en progreso '
                 }
             break;
-            case "2":
+            case "3":
                 resul = {
                     icono: "fire",
                     texto: 'Reporta incendios en progreso'
                 }
                 break;
-                case "3":
+                case "4":
                     resul = {
                         icono: "fist-raised",
                         texto: 'alerta sobre alguna riña en progreso'
                     } 
                     break;
-                    case "4":
+                    case "5":
                         resul = {
                             icono: "cloud-showers-heavy",
                             texto: 'Informa sobre una inundacion cerca tuyo'
                         }
                         break;
-                        case "5":
+                        case "6":
                             resul = {
                                 icono: "car-crash",
                                 texto: 'Reporta de un accidente de trancito grave'
                             } 
                             break;
-                            case "6":
+                            case "7":
                                 resul = {
                                     icono: "ambulance",
                                     texto: 'Reporta sobre un imprevisto medico cerca tuyo'
                                 } 
                                 break;
-                                case "7":
+                                case "8":
                                     resul = {
                                         icono: "user-secret",
                                         texto: 'Informa sobre una persona sopechosa en el sector designado'
