@@ -131,7 +131,12 @@ async function getLoscationPermission() {
             coordinate={location}
             title="Ubicación seleccionada"
           />
+         
         )}
+         <Marker 
+                coordinate={{latitude:origin.latitude, longitude:origin.longitude}}
+                image={require('../../assets/marcadores/my.png')}
+               />
       </MapView>
       </View>
       <View  style={tw`items-center justify-center`}>

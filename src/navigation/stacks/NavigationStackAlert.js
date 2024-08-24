@@ -8,7 +8,7 @@ import ProtectedRoute from '../../components/RouteProtect';
 import Class from '../../screens/Alerts';
 import Creacion from '../../screens/emergenci/CreateAlert'
 import Mapa from '../../screens/emergenci/MapsAlerts'
-
+import Seguimiento from '../../screens/emergenci/SeguimientoAlert'
 
 const Stack = createStackNavigator();
  
@@ -52,6 +52,7 @@ export default function NavigationClass() {
 
             <Stack.Screen name="Creacion" component={Creacion}/>
             <Stack.Screen name="MapaAlerta" component={Mapa}/>
+            <Stack.Screen name="Seguimiento" component={Seguimiento}/>
         </Stack.Navigator>
     );
 }

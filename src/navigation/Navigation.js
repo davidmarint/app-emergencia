@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import NavigationDrawer from './NavigationDrawer';
 import NavigationLogin from './stacks/NavigationStackLogin'
-
+import { navigationRef } from './NavigationService';
 export default function Navigation() {
 
     //const state = useSelector(state => state);
@@ -12,7 +12,7 @@ export default function Navigation() {
     const isAuthenticated = useSelector(state =>state.navUsers?.isAuthenticated ?? false);
 
     return(
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
             { isAuthenticated ? <NavigationDrawer/> : <NavigationLogin/>}
         </NavigationContainer>
     )

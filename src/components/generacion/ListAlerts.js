@@ -11,7 +11,7 @@ const FlatListComponent = () => {
     const [error, setError] = useState(null);
     const [refreshing, setRefreshing] = useState(false);
 
-    
+     
        const ListDatos = async () =>{
          try{
            const response = await emergenciesApi.mainEmergenciesEmergencyList();
@@ -26,18 +26,6 @@ const FlatListComponent = () => {
          }
        };
 
-       const onRefresh = async () => {
-        setRefreshing(true);
-        try {
-          await ListDatos();
-        } catch (err) {
-          setError(err.message);
-          console.log('Error refreshing the list: ', err);
-        } finally {
-          setRefreshing(false);
-        }
-      };
-
        useEffect(() => {
         const fetchAlertsAndStartInterval = async () => {
           await ListDatos();
@@ -48,6 +36,18 @@ const FlatListComponent = () => {
         fetchAlertsAndStartInterval();
      }, [])
 
+     const onRefresh = async () => {
+      setRefreshing(true);
+      try {
+        await ListDatos();
+      } catch (err) {
+        setError(err.message);
+        console.log('Error refreshing the list: ', err);
+      } finally {
+        setRefreshing(false);
+      }
+
+      };
 
     // useEffect(() => {
     //   const ListDatos = async () => {

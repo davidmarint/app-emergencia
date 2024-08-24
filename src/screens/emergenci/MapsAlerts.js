@@ -5,33 +5,29 @@ import { View, Text, Alert, TouchableOpacity } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import { useRoute } from '@react-navigation/native';
 import { emergenciesApi } from '../../api';
-import AsociacionAlert from '../../components/generacion/AsociacionAlert';
-import { isAfter, subMinutes, parseISO } from 'date-fns';
+import { useNavigation } from '@react-navigation/native';
 
 const MapasAlert = () => {
     
     const { params: { item },} = useRoute(); 
-    
+    const navigation = useNavigation();
     const [origin, setOrigin] = useState({
         latitude :  4.103093,   //|| latitudeAlert
         longitude: -73.590991, //longitudeAlert
     });
     const [alerts, setAlerts] = useState([]);
-    const ubiAlert = {
-        latitude: parseFloat(item.latitude),
-        longitude: parseFloat(item.longitude)}
     
     const lat = parseFloat(item.latitude)
     const log = parseFloat(item.longitude)
     const [selectedMarker, setSelectedMarker] = useState(null);
-
+        
     const handleMarkerPress = (marker) => {
         setSelectedMarker(marker);
       };
-
+        
       const handleRespondEmergency = () => {
         // Aquí puedes manejar la lógica para responder a la emergencia
-        console.log('Respondiendo a la emergencia:', selectedMarker);
+        navigation.navigate("Seguimiento", {selectedMarker})
       };
 
     const fetchAlerts = async () => {
@@ -69,7 +65,6 @@ const MapasAlert = () => {
                 const { status } = await Location.requestForegroundPermissionsAsync();
                     if (status !== 'granted') {
                         alert('permission denied')
-                        console.log('El usuario no otorgó permisos para acceder a la ubicación.');
                         return;
                              // Aquí podrías mostrar un mensaje al usuario informándole que necesita otorgar permisos.
                             } else {
@@ -78,7 +73,7 @@ const MapasAlert = () => {
                                 latitude: location.coords.latitude,
                                 longitude: location.coords.longitude
                             } 
-                            setOrigin(ubiAlert);
+                            setOrigin(current);
                             }
                     } catch (error) {
                         console.error('Error al solicitar permisos de ubicación:', error);
@@ -137,6 +132,10 @@ const MapasAlert = () => {
                 image={emergencyIcons[alerta.emergency_type]}
                 onPress={() => handleMarkerPress(alerta)}/>
             ))}
+            <Marker coordinate={origin}
+            title='Me'
+            image={require('../../assets/marcadores/my.png')}
+            />
 
              {/*<Marker 
                 key={alerts[0].id}

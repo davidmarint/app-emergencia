@@ -1,7 +1,10 @@
 import axios from 'axios'
+import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {authentication} from '../api/index'
-import { useNavigation } from '@react-navigation/native';
+import { navigate } from '../navigation/NavigationService';
+import { useDispatch} from 'react-redux';
+import { logout } from '../slices/userSlice'
 
 const apiUrl = "https://emergencies.byteobe.com:8000"
 
@@ -70,10 +73,9 @@ axiosInstance.interceptors.response.use(
         console.error('Error refreshing token:', refreshError);
         await AsyncStorage.removeItem('userToken');
         await AsyncStorage.removeItem('refreshToken');
-        
-        // Emitir un evento para manejar el logout en un componente React
-        // Por ejemplo: EventEmitter.emit('LOGOUT_REQUIRED');
-        
+        const dispatch = useDispatch();
+        dispatch(logout());
+        navigate('NavigationLogin');
         return Promise.reject(refreshError);
       }
     }
