@@ -75,7 +75,7 @@ axiosInstance.interceptors.response.use(
         await AsyncStorage.removeItem('refreshToken');
         const dispatch = useDispatch();
         dispatch(logout());
-        navigate('NavigationLogin');
+        navigate('Secion');
         return Promise.reject(refreshError);
       }
     }

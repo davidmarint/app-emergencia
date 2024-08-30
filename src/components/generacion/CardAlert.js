@@ -14,73 +14,73 @@ const CardAlert = (props) => {
             case "2":
                 resul = {
                     icono: "mask",
-                    texto: 'Reporta un robo en progreso '
+                    texto: 'Reporta un robo en progreso'
                 }
             break;
             case "3":
                 resul = {
                     icono: "fire",
-                    texto: 'Reporta incendios en progreso'
+                    texto: 'Reporta un incendio en progreso'
                 }
                 break;
                 case "4":
                     resul = {
                         icono: "fist-raised",
-                        texto: 'alerta sobre alguna riña en progreso'
+                        texto: 'Alerta sobre alguna riña en progreso'
                     } 
                     break;
                     case "5":
                         resul = {
                             icono: "cloud-showers-heavy",
-                            texto: 'Informa sobre una inundacion cerca tuyo'
+                            texto: 'Informa sobre una inundación cerca de ti'
                         }
                         break;
                         case "6":
                             resul = {
                                 icono: "car-crash",
-                                texto: 'Reporta de un accidente de trancito grave'
+                                texto: 'Reporta de un accidente de transito grave'
                             } 
                             break;
                             case "7":
                                 resul = {
                                     icono: "ambulance",
-                                    texto: 'Reporta sobre un imprevisto medico cerca tuyo'
+                                    texto: 'Reporta sobre un imprevisto medico cerca de ti'
                                 } 
                                 break;
                                 case "8":
                                     resul = {
                                         icono: "user-secret",
-                                        texto: 'Informa sobre una persona sopechosa en el sector designado'
+                                        texto: 'Informa sobre una persona sospechosa en el sector designado'
                                     } 
                                     break;
                                         case "9":
                                             resul = {
                                                 icono: "fist-raised",
-                                                texto: 'Reporta sobre un caso de violencia Intrafamiliar cerca tuyo'
+                                                texto: 'Reporta sobre un caso de violencia Intrafamiliar cerca de ti'
                                             }
                                             break;
                                             case "10":
                                                 resul = {
                                                     icono: "house-damage",
-                                                    texto: 'Reporta sobre algun daño en la infraestructra de algun servicio publico'
+                                                    texto: 'Comunica fallas en la infraestructura de algún servicio público'
                                                 }
                                                 break;
                                                 case "11":
                                                     resul = {
                                                         icono: "bahai",
-                                                        texto: 'Reporta una Explicion cerca tuyo'
+                                                        texto: 'Reporta una Explosión cerca de ti '
                                                     }
                                                     break;
                                                     case "12":
                                                         resul = {
                                                             icono: "skull-crossbones",
-                                                            texto: 'Reporta sobre una persona a punto de quitarse la vida '
+                                                            texto: 'Reporta sobre una persona a punto de quitarse la vida'
                                                         }
                                                         break;
                                                         case "13":
                                                         resul = {
                                                             icono: "question-circle",
-                                                            texto: 'Reporta sobre otro tipo de emergencia que requiera atencion urgente'
+                                                            texto: 'Reporta sobre otro tipo de emergencia que requiera atención urgente'
                                                         }
                                                         break;
                                                         case "14":

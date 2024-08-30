@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { emergenciesApi } from '../../api';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { useSelector } from 'react-redux';
 
 const FormList = ({item}) => { 
 
@@ -13,6 +14,7 @@ const FormList = ({item}) => {
     const [classAlerts, setClassAlerts] = useState([]);
     const [alertDetails, setAlertDetails] = useState({ image: "https://emergencies.byteobe.com:8000/media/cruz_PtkFEIZ.png", title: "Tipo de alerta desconocido" });
     const [timeAgo, setTimeAgo] = useState('');
+    const { selectedAlert, userLocation } = useSelector((state) => state.alert);
 
     useEffect(() => {
         const ListClass = async () =>{
@@ -89,8 +91,18 @@ const FormList = ({item}) => {
                     <Text style={{ color: '#888' }}>{timeAgo}</Text> 
                     </View>
                     <View style={tw`items-center justify-center right-7`}>
-                    <Icon name="map-marked-alt" size={24} color="rgb(23,37,84)" style={tw``} />
-                    <Text>ver lugar</Text>
+                    {  selectedAlert !== null && selectedAlert && selectedAlert.id === item.id ?  (
+                        <>
+                         <Icon name="shipping-fast" size={24} color="rgb(30,64,175)" style={tw``} />
+                        <Text style={tw`right-1`}>En respuesta</Text>
+                        </>
+                            ) : (
+                            <>
+                        
+                        <Icon name="map-marked-alt" size={24} color="rgb(23,37,84)" style={tw``} />
+                            <Text>ver lugar</Text>
+                            </>
+                            )}
                     </View>
                 </View>
         </View>

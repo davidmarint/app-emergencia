@@ -29,13 +29,13 @@ const llamar  = () =>{
           </View>
           <View style={tw`h-140 p-3 bg-blue-950 opacity-98 w-full border-t-4 border-amber-500`}>
           
-            <Text style={tw`text-lg font-semibold p-3 text-white`}>DESCRIPCIÓN</Text>
+            <Text style={tw`text-lg font-semibold p-3 text-white`}>Descripción</Text>
             <Text style={tw`text-justify p-2 text-base text-white`}>{item.descripcion}</Text>
             {item.nombre === "Bomberos" && 
-            <Text style={tw`text-justify p-2 text-base text-white`}>Disponivilidad de vehiculos de atencion rapida: 4 </Text>
+            <Text style={tw`text-justify p-2 text-base text-white`}>Disponibilidad de vehículos de atención rápida: 4 </Text>
             }
             {item.nombre === "Ambulancia" && 
-            <Text style={tw`text-justify p-2 text-base text-white`}>Disponivilidad de vehiculos de atencion : 29 </Text>
+            <Text style={tw`text-justify p-2 text-base text-white`}>Disponibilidad de vehículos de atención : 29 </Text>
             }
              <Direccion/>
           { item.ubicacion !== undefined && <TimeArrive item={item}/> } 

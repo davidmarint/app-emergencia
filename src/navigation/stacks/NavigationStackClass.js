@@ -19,14 +19,8 @@ const CustomHeaderTitle = () => (
 export default function NavigationClass() {
     const navigation = useNavigation();
     return(
-        <Stack.Navigator screenOptions={{
-            headerTintColor:'rgb(23,37,88)',
-            headerStyle: {
-                backgroundColor: 'white',
-                height: 80,
-            },
-            headerTitle: () => <CustomHeaderTitle />,
-        }}>
+        <Stack.Navigator  screenOptions={{
+            headerShown: false, }}>
             <Stack.Screen name="Clases" component={Class} options={{
                 headerLeft: () => {
                     return(

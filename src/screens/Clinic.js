@@ -78,9 +78,9 @@ const Clinic = () => {
           return (
         <View style={tw`h-full`}>
            <View style={tw`border-2 border-amber-400 bg-amber-400 p-3`} >
-            <Text style={tw`text-xl font-semibold text-blue-950 `}>PRINCIPALES CLINICAS DE LA CIUDAD</Text>
+            <Text style={tw`text-xl font-semibold text-blue-950 `}>Principales clínicas de la ciudad</Text>
             <Text style={tw`text-lg  text-blue-950 p-2`}>
-                Seleccione la su EPS para comocer a cual clinica acudir en caso de emergencia
+                Seleccione la su EPS para conocer a cúal clínica acudir en caso de emergencia
             </Text>
             </View>
         <View style={tw`border border-gray-400 rounded p-2 m-2 bg-blue-950 h-1/10`}>

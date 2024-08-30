@@ -2,10 +2,14 @@ import tw from 'twrnc';
 import React, { useEffect, useState } from 'react';
 import *as Location from 'expo-location';
 import { View, Text, Alert, TouchableOpacity } from 'react-native';
+import MapViewDirections from 'react-native-maps-directions';
 import MapView, {Marker} from 'react-native-maps';
 import { useRoute } from '@react-navigation/native';
 import { emergenciesApi } from '../../api';
 import { useNavigation } from '@react-navigation/native';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { useSelector } from 'react-redux';
+import {GOOGLE_MAPS_KEY} from '@env'
 
 const MapasAlert = () => {
     
@@ -16,11 +20,15 @@ const MapasAlert = () => {
         longitude: -73.590991, //longitudeAlert
     });
     const [alerts, setAlerts] = useState([]);
-    
+    const { data} = useCurrentUser()
     const lat = parseFloat(item.latitude)
     const log = parseFloat(item.longitude)
+    const marca ={
+        latitude: lat,
+        longitude: log
+    }
     const [selectedMarker, setSelectedMarker] = useState(null);
-        
+    const { selectedAlert, userLocation } = useSelector((state) => state.alert);
     const handleMarkerPress = (marker) => {
         setSelectedMarker(marker);
       };
@@ -89,8 +97,8 @@ const MapasAlert = () => {
                 7: "Urgencia médica",
                 8: "Persona sospechosa",
                 9: "Violencia intrafamiliar",
-                10: "Explosión",
-                11: "Daño en servicio público",
+                10: "Daño en servicio público",
+                11: "Explosión",
                 12: "Intento de suicidio",
                 13: "Indefinida",
             };
@@ -103,8 +111,8 @@ const MapasAlert = () => {
                 7: require('../../assets/marcadores/6.png'),
                 8: require('../../assets/marcadores/7.png'),
                 9: require('../../assets/marcadores/8.png'),
-                10: require('../../assets/marcadores/9.png'),
-                11: require('../../assets/marcadores/10.png'),
+                10: require('../../assets/marcadores/10.png'),
+                11: require('../../assets/marcadores/9.png'),
                 12: require('../../assets/marcadores/11.png'),
                 13: require('../../assets/marcadores/12.png'),
             };
@@ -137,23 +145,30 @@ const MapasAlert = () => {
             image={require('../../assets/marcadores/my.png')}
             />
 
-             {/*<Marker 
-                key={alerts[0].id}
-                coordinate={{latitude:parseFloat(alerts[0].latitude), longitude:parseFloat(alerts[0].longitude)}}
-                title={alerts[0].emergency_type.toString()}></Marker>
-             <MapViewDirections 
-                origin={origin}
-                destination={destination}
-                apikey={GOOGLE_MAPS_KEY}
-                strokeColor='navy'
-                strokeWidth={6}
-            /> */}
+        
+            {userLocation && (
+            <>
+            <Marker  
+                coordinate={userLocation}
+                title='Ayuda en camino'
+            />
+            <MapViewDirections 
+            origin={userLocation}
+            destination={marca}
+            apikey={GOOGLE_MAPS_KEY}
+            strokeColor='navy'
+            strokeWidth={6}
+            />
+            </>
+        )}
+          
         </MapView>
         </View>
-        {selectedMarker && (
+        {selectedMarker && data.role.name !== "ciudadano" &&(
         <TouchableOpacity
           style={tw`absolute bottom-10 left-10 right-10 p-4 bg-blue-500 rounded-2xl items-center justify-center`}
           onPress={handleRespondEmergency}
+          disabled={userLocation !== null}
         >
           <Text style={tw`text-white font-bold`}>Responder Emergencia</Text>
         </TouchableOpacity>

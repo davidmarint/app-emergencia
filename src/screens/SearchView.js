@@ -25,7 +25,7 @@ const SearchView = () => {
 } else{
     return (
     <View>
-        <Text>No se encontro asignacion</Text>  
+        <Text>No se encontró asignación</Text>  
     </View>
     );
 }

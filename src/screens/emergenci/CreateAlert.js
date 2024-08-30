@@ -104,12 +104,12 @@ async function getLoscationPermission() {
               <Picker.Item label="Incendio" value="3" />
               <Picker.Item label="Riña" value="4" />
               <Picker.Item label="Inundación" value="5" />
-              <Picker.Item label="Accidente de Trancito" value="6" />
-              <Picker.Item label="Urgencia Medica" value="7" />
+              <Picker.Item label="Accidente de Transito" value="6" />
+              <Picker.Item label="Urgencia Médica" value="7" />
               <Picker.Item label="Persona Sospechosa" value="8" />
               <Picker.Item label="Violencia Intrafamiliar" value="9" />
-              <Picker.Item label="Daño en servicio publico" value="10" />
-              <Picker.Item label="Exploción" value="11" />
+              <Picker.Item label="Daño en servicio público" value="10" />
+              <Picker.Item label="Explosión" value="11" />
               <Picker.Item label="Intento de Suicidio" value="12" />
               <Picker.Item label="Indefinida" value="13" />
             </Picker>

@@ -7,6 +7,7 @@ import TapNavigationDirectory from './NavigationTapsDirectory';
 import Info from './stacks/NavigationStackCuenta';
 import Prueva from '../screens/emergenci/MapsAlerts'
 
+
 const Drawer = createDrawerNavigator();
 
 export default function NavigationDrawer() {
@@ -37,11 +38,12 @@ export default function NavigationDrawer() {
                     headerShown: true, 
                     title: "Cuenta",
             }}/>
-             <Drawer.Screen name="Prueva" component={Prueva} options={{
+             {/* <Drawer.Screen name="Prueva" component={Prueva} options={{
                 drawerIcon: ({ color, size }) => (
                     <Icon name="info-circle" color={color} size={size}/>
                 ),
-            }}/>
+            }}/> */}
+           
         </Drawer.Navigator>
     )
 } 

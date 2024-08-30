@@ -15,49 +15,39 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Role } from './role';
+import type { RoleEnum } from './role-enum';
 
 /**
  * 
  * @export
- * @interface User
+ * @interface EmergencyRoleSerializerRequest
  */
-export interface User {
+export interface EmergencyRoleSerializerRequest {
     /**
      * 
-     * @type {number}
-     * @memberof User
+     * @type {RoleEnum}
+     * @memberof EmergencyRoleSerializerRequest
      */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
-    'first_name'?: string;
+    'role': RoleEnum;
     /**
      * 
      * @type {string}
-     * @memberof User
+     * @memberof EmergencyRoleSerializerRequest
      */
-    'last_name'?: string;
+    'number_id'?: string;
     /**
      * 
      * @type {string}
-     * @memberof User
+     * @memberof EmergencyRoleSerializerRequest
      */
-    'email': string;
+    'adress'?: string;
     /**
      * 
-     * @type {number}
-     * @memberof User
+     * @type {string}
+     * @memberof EmergencyRoleSerializerRequest
      */
-    'number_id'?: number | null;
-    /**
-     * 
-     * @type {Role}
-     * @memberof User
-     */
-    'role': Role;
+    'plate_vehicle'?: string;
 }
+
+
 

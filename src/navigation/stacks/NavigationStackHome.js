@@ -10,7 +10,8 @@ import Search from '../../screens/SearchView';
 import Mapas from '../../screens/Mapas';
 import Clinic from '../../screens/Clinic';
 import LocalPolice from '../../screens/LocalPolice';
-import Login from '../../screens/login/SingIn'
+import Login from './NavigationStackLogin'
+import Categorias from './NavigationStackClass'
 
 const Stack = createStackNavigator();
 
@@ -51,7 +52,10 @@ export default function NavigationClass() {
             <Stack.Screen name="Mapa" component={Mapas}/>
             <Stack.Screen name="Clinicas" component={Clinic}/>
             <Stack.Screen name="Cuadrantes" component={LocalPolice}/>
-            <Stack.Screen name="Login" component={Login}/>
+            <Stack.Screen name="Categorias" component={Categorias}   />
+            <Stack.Screen name="Login" component={Login} options={{
+                headerShown: false
+            }} />
         </Stack.Navigator>
     );
 }

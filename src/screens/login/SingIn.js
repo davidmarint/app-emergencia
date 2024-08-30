@@ -48,7 +48,7 @@ const SingIn = () => {
                  source={require('../../assets/icon.png')}
                 style={tw`absolute m-10 w-50 h-50`}/> 
             <View style={tw`absolute mt-70 w-8/9 bg-white items-center justify-center rounded-2xl shadow-2xl`}>
-                <Text style={tw`text-lg mb-5 text-center p-3`}>INICIA SESION</Text>
+                <Text style={tw`text-lg mb-5 text-center p-3`}>Inicia sesión</Text>
                 <TextInput
                     style={tw`h-10 w-8/9 p-2 border-stone-400 border-2 mb-2 rounded-2xl`}
                     placeholder="Email"
@@ -74,7 +74,7 @@ const SingIn = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={tw`bg-blue-500 rounded-2xl p-3 items-center mt-1 mb-10 shadow-md`}  onPress={onHandlerHome}>
-                     <Text style={tw`text-white font-bold`}>Entrar Sin Registrarse</Text>
+                     <Text style={tw`text-white font-bold`}>Entrar sin registrarse</Text>
                 </TouchableOpacity>
             </View>
         </View>

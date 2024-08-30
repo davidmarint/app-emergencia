@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "EmergencyApp",
+    "name": "Villavo Emergencias",
     "slug": "EmergencyApp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,15 +22,20 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "config":{
-        "googleMaps":{
-          "apiKey": "AIzaSyCAh4-Px2FAezCV6stztKzgg2TYzANHUCw"
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDKEzdX6sJFohL11-DIVbrLhzRXi1I6ijw"
         }
       },
       "package": "villaoEmergencias.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5377f77b-e22f-43dd-bb91-68df64a84f36"
+      }
     }
   }
 }

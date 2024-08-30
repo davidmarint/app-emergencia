@@ -85,6 +85,46 @@ paths:
               schema:
                 $ref: '#/components/schemas/Emergency'
           description: ''
+  /api/main/users/change-role/:
+    post:
+      operationId: main_users_change_role_create
+      description: Crear una solicitud de cambio de rol
+      summary: Solicitud de cambio de rol
+      tags:
+      - Change Role
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmergencyRoleSerializerRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmergencyRoleSerializerRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EmergencyRoleSerializerRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                description: Datos inválidos
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Rol no encontrado
+          description: ''
   /api/main/users/current/:
     get:
       operationId: main_users_current_retrieve
@@ -361,6 +401,34 @@ components:
       - latitude
       - longitude
       - user
+    EmergencyRoleSerializerRequest:
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+        number_id:
+          type: string
+          maxLength: 255
+        adress:
+          type: string
+          maxLength: 255
+        plate_vehicle:
+          type: string
+          maxLength: 255
+      required:
+      - role
+    NameEnum:
+      enum:
+      - ciudadano
+      - policia
+      - ambulancia
+      - bomberos
+      type: string
+      description: |-
+        * `ciudadano` - Ciudadano
+        * `policia` - Policía
+        * `ambulancia` - Ambulancia
+        * `bomberos` - Bomberos
     ResetPassword:
       type: object
       properties:
@@ -390,6 +458,29 @@ components:
           format: email
       required:
       - email
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          $ref: '#/components/schemas/NameEnum'
+      required:
+      - id
+      - name
+    RoleEnum:
+      enum:
+      - ciudadano
+      - policia
+      - ambulancia
+      - bomberos
+      type: string
+      description: |-
+        * `ciudadano` - ciudadano
+        * `policia` - policia
+        * `ambulancia` - ambulancia
+        * `bomberos` - bomberos
     StatusEnum:
       enum:
       - active
@@ -442,9 +533,12 @@ components:
           maximum: 2147483647
           minimum: -2147483648
           nullable: true
+        role:
+          $ref: '#/components/schemas/Role'
       required:
       - email
       - id
+      - role
     UserCreate:
       type: object
       properties:

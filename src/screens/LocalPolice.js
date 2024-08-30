@@ -12,9 +12,9 @@ const LocalPolice = () => {
                 <SearchBar num={num}/>
             </View>
             <View style={tw`border-2 border-amber-400 bg-amber-400 p-3`} >
-            <Text style={tw`text-xl font-semibold text-blue-950 `}>CUADRANTES DE POLICIA</Text>
+            <Text style={tw`text-xl font-semibold text-blue-950 `}>Cuadrantes de policía</Text>
             <Text style={tw`text-lg  text-blue-950 p-2`}>
-                Se mostrara los cuadrantes de policias mas cercanos segun su ubicacion 
+                Se mostrará los cuadrantes de policías más cercanos según su ubicación 
             </Text>
             </View>
             <Cuadrantes/>

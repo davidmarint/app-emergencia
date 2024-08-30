@@ -7,19 +7,27 @@ import MapViewDirections from 'react-native-maps-directions';
 import { useRoute } from '@react-navigation/native';
 import {GOOGLE_MAPS_KEY} from '@env'
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import {setAlertData , clearAlertData} from '../../slices/ubiSlice'
 
 const Mapas = () => {
-    
+    const dispatch = useDispatch();
     const { params: { selectedMarker},} = useRoute(); 
     const [origin, setOrigin] = React.useState({
-        latitude : 4.103093,   //4.1340
-        longitude: -73.590991, //-73.6266
+        latitude : 4.120318,   //4.1340  ,  4.103093
+        longitude: -73.560845, //-73.6266 -73.590991
     });
     const [destination, setDestination] = React.useState({
         latitude: 4.148610,
         longitude: -73.615794,
-    });
+});
     const navigation = useNavigation();
+
+    dispatch(setAlertData({
+        selectedAlert: selectedMarker,
+        userLocation: origin,
+      }));
+
     React.useEffect(() =>{
         getLoscationPermission();
     }, [])
@@ -48,6 +56,7 @@ const Mapas = () => {
             // Aquí podrías manejar cualquier error que ocurra durante la solicitud de permisos.
         }
     } 
+    
     const emergencyTypes = {
         2: "Robo",
         3: "Incendio",
@@ -78,15 +87,61 @@ const Mapas = () => {
         13: require('../../assets/marcadores/12.png'),
     };
 
+    const ayuda = {
+        latitude: parseFloat(selectedMarker.latitude),
+        longitude: parseFloat(selectedMarker.longitude),
+    }
+
     const eliminar = () =>{
         Alert.alert('Has cancelado la ayuda');
+        dispatch(clearAlertData());
         navigation.navigate("Alertas");
     }
+
+    const volver = ()=>{
+        navigation.navigate("Alertas");
+    }
+
+    function getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
+        const R = 6371e3; // Radio de la Tierra en metros
+        const dLat = (lat2 - lat1) * (Math.PI / 180);
+        const dLon = (lon2 - lon1) * (Math.PI / 180);
+        const a =
+          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(lat1 * (Math.PI / 180)) *
+            Math.cos(lat2 * (Math.PI / 180)) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const distance = R * c; // Distancia en metros
+        return distance;
+      }
+
+      function checkIfMarkerReachedDestination(origin, destination, threshold = 50) {
+        const distance = getDistanceFromLatLonInMeters(
+          origin.latitude,
+          origin.longitude,
+          destination.latitude,
+          destination.longitude
+        );
+      
+        return distance <= threshold;
+      }
+      React.useEffect(() => {
+        const markerReached = checkIfMarkerReachedDestination(origin, ayuda);
+      
+        if (markerReached) {
+          console.log("El marcador ha llegado a su destino");
+          Alert.alert('Has llegado a tu destino');
+          dispatch(clearAlertData());
+          navigation.navigate("Alertas");
+        }
+      }, [selectedMarker]);
 
     return (
     <View> 
         <MapView 
-        style={tw`w-full h-8/9`}
+        style={tw`w-full h-80/100`}
         initialRegion={{
             latitude: origin.latitude,
             longitude: origin.longitude,
@@ -106,7 +161,7 @@ const Mapas = () => {
 
             <MapViewDirections 
                 origin={origin}
-                destination={destination}
+                destination={ayuda}
                 apikey={GOOGLE_MAPS_KEY}
                 strokeColor='navy'
                 strokeWidth={6}
@@ -118,6 +173,12 @@ const Mapas = () => {
           onPress={eliminar}
         >
           <Text style={tw`text-white font-bold`}>Cancelar la ayuda</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={tw` w-8/9 p-4 bg-blue-800 rounded-2xl items-center justify-center mt-2`}
+          onPress={volver}
+        >
+          <Text style={tw`text-white font-bold`}>Volver a alertas</Text>
         </TouchableOpacity>
         </View>
     </View>

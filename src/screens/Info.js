@@ -7,6 +7,7 @@ import { logout } from '../slices/userSlice'
 import { useNavigation } from '@react-navigation/native';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 import { fi } from 'date-fns/locale';
+import { navigate } from '../navigation/NavigationService'
 
 const Info = () => {
   const dispatch = useDispatch();
@@ -14,16 +15,14 @@ const Info = () => {
   const userData = useSelector((state) => state.navUsers);
   const { data, loading, error } = useCurrentUser()
 
-
-
   console.log(data)
 
   const handleLogout = () => {
     dispatch(logout());
-    navigation.navigate('Login2'); // Asegúrate de que 'Login' es el nombre correcto de tu ruta de login
+    navigation.navigate('Login2');
   };
   const handleRegister = () => {
-    navigation.navigate('RegistroE'); // Asegúrate de que 'Login' es el nombre correcto de tu ruta de login
+    navigation.navigate('RegistroE'); 
   };
 
   const usuario = () =>{
@@ -35,7 +34,8 @@ const Info = () => {
      primero: data.first_name,
      segundo: data.last_name,
       correo: data.email,
-    combinacion: letra1 + letra2
+    combinacion: letra1 + letra2,
+    rol: data.role.name
    }
   return(datos)
   }else{
@@ -43,7 +43,8 @@ const Info = () => {
       primero: "Usuario",
       segundo: "no registrado",
        correo: " ",
-     combinacion: "NN"
+     combinacion: "NN",
+     rol: "Ninguno"
     }
     return(datos)
   }
@@ -54,7 +55,6 @@ const Info = () => {
   
   return (
     <View style={tw` items-center h-full bg-white`}>
-      
     <View style={tw`bg-blue-800 w-full h-1/4  rounded-b-10 shadow-md`}></View>
     <View style={tw`rounded-full border-4 border-white justify-center items-center bg-red-500 bottom-13`}>
       <Avatar.Text size={98} label={final.combinacion}/> 
@@ -63,10 +63,11 @@ const Info = () => {
       <View style={tw`items-center`}>
         <Text style={tw`text-2xl bottom-3`}>{final.primero} {final.segundo}</Text>
         <Text style={tw`text-base pt-1 bottom-5`}>{final.correo}</Text> 
+        <Text style={tw`text-base pt-1 bottom-5`}>{final.rol}</Text> 
         </View>
         <View style={tw`w-80 items-center`}>
           <TouchableOpacity style={tw` bg-red-500 p-2 rounded-lg w-full items-center h-12`} onPress={handleLogout}>
-            <Text style={tw`text-lg text-white`}>Cerrar Sesión</Text>
+            <Text style={tw`text-lg text-white`}>Cerrar sesión</Text>
           </TouchableOpacity>
           <TouchableOpacity style={tw`bg-blue-800 p-2 rounded-lg items-center h-20 w-full mt-5`} onPress={handleRegister}>
             <Text style={tw`text-lg text-white`}>Registrarse como organismo  </Text>

@@ -2,12 +2,16 @@ import React, {useState, useEffect} from 'react';
 import { View, ActivityIndicator, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { navigate } from '../navigation/NavigationService'
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../slices/userSlice'
 
 const ProtectedRoute = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigation = useNavigation();
 
+  const dispatch = useDispatch();
   useEffect(() => {
     checkAuth();
   }, []);

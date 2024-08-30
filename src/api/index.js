@@ -1,4 +1,4 @@
-import {AuthenticateApi, EmergenciesApi,MainApi, UsersApi} from '../api-client'
+import {AuthenticateApi, EmergenciesApi,MainApi, UsersApi, ChangeRoleApi} from '../api-client'
 import axios from './axios'
 
 const apiUrl = "https://emergencies.byteobe.com:8000"
@@ -10,3 +10,5 @@ export const emergenciesApi = new EmergenciesApi(undefined, apiUrl, axios)
 export const mainApi = new MainApi(undefined, apiUrl, axios)
 
 export const usersApi = new UsersApi(undefined, apiUrl, axios)
+
+export const changeRoleApi = new ChangeRoleApi(undefined, apiUrl, axios)
