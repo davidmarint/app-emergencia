@@ -1,10 +1,14 @@
+import tw from 'twrnc'
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, } from 'react-native';
+import SearchBarList from '../components/SearchBarList';
 
 const Directory = () => {
-    return (
+
+
+return (
     <View>
-        <Text>Emergency directory</Text>
+        <SearchBarList/>
     </View>
     );
 }

@@ -1,40 +1,30 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import  Icon  from 'react-native-vector-icons/FontAwesome5';
-import Home from '../screens/Home';
-import Call from '../screens/Call';
-import Directory from '../screens/Directory';
+import { NavigationContainer } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import NavigationDrawer from './NavigationDrawer';
+import NavigationLogin from './stacks/NavigationStackLogin'
+import { navigationRef } from './NavigationService';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Tap = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-export default function Navigation () {
+export default function Navigation() {
 
-    return (
-        <Tap.Navigator >
-            <Tap.Screen 
-                name="Inicio" 
-                component={Home} 
-                options={{ 
-                    tabBarIcon: ({color, size}) => (
-                        <Icon name="home" color={color} size={size} />
-                        ),
-                }}/>
-            <Tap.Screen 
-                name="Llamar" 
-                component={Call}
-                options={{ 
-                    tabBarIcon: ({color, size}) => (
-                        <Icon name="phone" color={color} size={size} />
-                        ),
-                }} />
-            <Tap.Screen 
-                name="Directorio" 
-                component={Directory}
-                options={{ 
-                    tabBarIcon: ({color, size}) => (
-                        <Icon name="address-book" color={color} size={size} />
-                        ),
-                }} />
-        </Tap.Navigator>
-    );
-}
+    //const state = useSelector(state => state);
+    //console.log('Estado completo de Redux:', state)
+
+    const isAuthenticated = useSelector(state =>state.navUsers?.isAuthenticated ?? false);
+
+    return(
+        <NavigationContainer ref={navigationRef}>
+            {/* { isAuthenticated ? <NavigationDrawer/> : <NavigationLogin />} */}
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+                {isAuthenticated ? (
+                    <Stack.Screen name="Main" component={NavigationDrawer} />
+                ) : (
+                    <Stack.Screen name="Secion" component={NavigationLogin} />
+                )}
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
+} 
