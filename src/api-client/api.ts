@@ -15,6 +15,7 @@
 
 
 export * from './api/authenticate-api';
+export * from './api/change-role-api';
 export * from './api/emergencies-api';
 export * from './api/main-api';
 export * from './api/users-api';

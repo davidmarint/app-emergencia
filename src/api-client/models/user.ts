@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Role } from './role';
 
 /**
  * 
@@ -49,6 +52,12 @@ export interface User {
      * @type {number}
      * @memberof User
      */
-    'number_id': number;
+    'number_id'?: number | null;
+    /**
+     * 
+     * @type {Role}
+     * @memberof User
+     */
+    'role': Role;
 }
 

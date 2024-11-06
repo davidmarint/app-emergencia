@@ -22,6 +22,7 @@ function AppWrapper() {
     };
 
     bootstrapAsync();
+    
   }, []);
 
   return <Navigation/>;

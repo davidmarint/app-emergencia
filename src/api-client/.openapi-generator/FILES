@@ -3,6 +3,7 @@
 .openapi-generator-ignore
 api.ts
 api/authenticate-api.ts
+api/change-role-api.ts
 api/emergencies-api.ts
 api/main-api.ts
 api/users-api.ts
@@ -13,12 +14,17 @@ git_push.sh
 index.ts
 models/custom-token-obtain-pair.ts
 models/emergencies-type.ts
+models/emergency-role-serializer-request.ts
 models/emergency.ts
 models/index.ts
+models/name-enum.ts
 models/reset-password-code-validate-request.ts
 models/reset-password-request.ts
 models/reset-password.ts
+models/role-enum.ts
+models/role.ts
 models/status-enum.ts
 models/token-output.ts
+models/token-refresh.ts
 models/user-create.ts
 models/user.ts

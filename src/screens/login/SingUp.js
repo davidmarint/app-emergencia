@@ -23,6 +23,13 @@ const SingUp = () => {
             Alert.alert('Error', 'Todos los campos son obligatorios');
             return;
           }
+          
+          const uppercaseRegex = /[A-Z]/;
+            if (!uppercaseRegex.test(password)) {
+            Alert.alert('Error', 'La contraseña debe contener al menos una letra mayúscula.');
+            return;
+        }
+
           const numericIdNumber = parseInt(idNumber, 10);
         setIsLoading(true);
         const data = {
@@ -34,8 +41,13 @@ const SingUp = () => {
           };
           try {
         const response = await authentication.mainUsersRegisterCreate({userCreate:data})
-       if(response.status==200){
+       if(response.status==200 || 201){
         Alert.alert('Registro exitoso', `Nombre: ${firstName} ${lastName}\nEmail: ${email}`);
+        setFirstName('');
+        setLastName('');
+        setIdNumber('');
+        setEmail('');
+                setPassword('');
         navigation.navigate('entrar')
        }  else {
         Alert.alert('Registro erroneo vuelva a intentar');}
@@ -55,7 +67,7 @@ const SingUp = () => {
                  source={require('../../assets/icon.png')}
                 style={tw`absolute m-10 w-50 h-50`}/> 
             <View style={tw`absolute mt-70 w-8/9 bg-white items-center justify-center rounded-2xl shadow-2xl`}>
-                <Text style={tw`text-lg mb-5 text-center p-3`}>REGISTRARSE</Text>
+                <Text style={tw`text-lg mb-5 text-center p-3`}>Registrarse</Text>
                 <View style={tw`flex-row justify-between mb-4`}>
                 <TextInput
                 style={tw`border-2 border-stone-400 p-2 ml-6 flex-1 h-10 mr-2 rounded-2xl`}
@@ -98,7 +110,7 @@ const SingUp = () => {
                 </TouchableOpacity>
             <TouchableOpacity
                     style={tw`bg-blue-500 rounded-2xl p-3 items-center mt-1 mb-10 shadow-md`}  onPress={() => navigation.navigate('entrar')}>
-                     <Text style={tw`text-white font-bold`}>Go To Login</Text>
+                     <Text style={tw`text-white font-bold`}>Volver al inicio de sesión</Text>
                 </TouchableOpacity>
                 <Text style={tw`text-white font-bold`}>{isLoading ? 'Registrando...' : 'Registrarse'}</Text>
             </View>

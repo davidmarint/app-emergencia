@@ -164,7 +164,7 @@ const Cuadrantes = () => {
     console.log('El usuario está fuera de todos los cuadrantes');
     return (
         <View style={tw`justify-center h-1/2`}>
-            <Text style={tw`text-lg  text-gray-500 p-2 text-center`}>"El usuario no se encuantra cerca de algun cuadrante"</Text>
+            <Text style={tw`text-lg  text-gray-500 p-2 text-center`}>"El usuario no se encuentra cerca de algún cuadrante"</Text>
         </View>
     );
 }

@@ -4,8 +4,11 @@ import { View, Image } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
+import ProtectedRoute from '../../components/RouteProtect';
 import Class from '../../screens/Alerts';
 import Creacion from '../../screens/emergenci/CreateAlert'
+import Mapa from '../../screens/emergenci/MapsAlerts'
+import Seguimiento from '../../screens/emergenci/SeguimientoAlert'
 
 const Stack = createStackNavigator();
  
@@ -14,6 +17,11 @@ const CustomHeaderTitle = () => (
         source={require('../../assets/tituloHeader.png')} // Ruta de la imagen
         style={{ width: 275, height: 58, bottom:18  }} 
     />
+    );
+    const ProtectedClass = (props) => (
+        <ProtectedRoute>
+            <Class {...props} />
+        </ProtectedRoute>
     );
 
 export default function NavigationClass() {
@@ -27,7 +35,7 @@ export default function NavigationClass() {
             },
             headerTitle: () => <CustomHeaderTitle />,
         }}>
-            <Stack.Screen name="Alertas" component={Class} options={{
+            <Stack.Screen name="Alertas" options={{
                 headerLeft: () => {
                     return(
                         <View style={tw`p-2 left-5 bottom-4`}>
@@ -39,8 +47,12 @@ export default function NavigationClass() {
                         </View>
                     )
                 }
-            }}/>
+            }}   component={ProtectedClass}  />
+            
+
             <Stack.Screen name="Creacion" component={Creacion}/>
+            <Stack.Screen name="MapaAlerta" component={Mapa}/>
+            <Stack.Screen name="Seguimiento" component={Seguimiento}/>
         </Stack.Navigator>
     );
 }

@@ -85,6 +85,46 @@ paths:
               schema:
                 $ref: '#/components/schemas/Emergency'
           description: ''
+  /api/main/users/change-role/:
+    post:
+      operationId: main_users_change_role_create
+      description: Crear una solicitud de cambio de rol
+      summary: Solicitud de cambio de rol
+      tags:
+      - Change Role
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmergencyRoleSerializerRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmergencyRoleSerializerRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EmergencyRoleSerializerRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                description: Datos inválidos
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Rol no encontrado
+          description: ''
   /api/main/users/current/:
     get:
       operationId: main_users_current_retrieve
@@ -183,6 +223,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResetPassword'
+          description: ''
+  /api/main/users/refresh/:
+    post:
+      operationId: main_users_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - Authenticate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
           description: ''
   /api/main/users/register/:
     post:
@@ -334,6 +401,34 @@ components:
       - latitude
       - longitude
       - user
+    EmergencyRoleSerializerRequest:
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+        number_id:
+          type: string
+          maxLength: 255
+        adress:
+          type: string
+          maxLength: 255
+        plate_vehicle:
+          type: string
+          maxLength: 255
+      required:
+      - role
+    NameEnum:
+      enum:
+      - ciudadano
+      - policia
+      - ambulancia
+      - bomberos
+      type: string
+      description: |-
+        * `ciudadano` - Ciudadano
+        * `policia` - Policía
+        * `ambulancia` - Ambulancia
+        * `bomberos` - Bomberos
     ResetPassword:
       type: object
       properties:
@@ -363,6 +458,29 @@ components:
           format: email
       required:
       - email
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          $ref: '#/components/schemas/NameEnum'
+      required:
+      - id
+      - name
+    RoleEnum:
+      enum:
+      - ciudadano
+      - policia
+      - ambulancia
+      - bomberos
+      type: string
+      description: |-
+        * `ciudadano` - ciudadano
+        * `policia` - policia
+        * `ambulancia` - ambulancia
+        * `bomberos` - bomberos
     StatusEnum:
       enum:
       - active
@@ -380,6 +498,17 @@ components:
         access:
           type: string
           title: Access token
+      required:
+      - access
+      - refresh
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
       required:
       - access
       - refresh
@@ -403,10 +532,13 @@ components:
           type: integer
           maximum: 2147483647
           minimum: -2147483648
+          nullable: true
+        role:
+          $ref: '#/components/schemas/Role'
       required:
       - email
       - id
-      - number_id
+      - role
     UserCreate:
       type: object
       properties:
@@ -420,6 +552,7 @@ components:
           type: integer
           maximum: 2147483647
           minimum: -2147483648
+          nullable: true
         email:
           type: string
           format: email
@@ -429,7 +562,6 @@ components:
           maxLength: 128
       required:
       - email
-      - number_id
       - password
   securitySchemes:
     jwtAuth:

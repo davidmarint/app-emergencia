@@ -13,24 +13,23 @@ const Stack = createStackNavigator();
 export default function NavigationClass() {
     //const navigation = useNavigation();
     return(
-        <Stack.Navigator  initialRouteName='entrar' screenOptions={{headerShown: false,}}>
-            <Stack.Screen name="entrar" component={SignIn} 
-            // options={{
-            //     headerLeft: () => {
-            //         return(
-            //             <View style={tw`p-2 left-5 bottom-4`}>
-            //             <Icon name="bars" 
-            //             color="#172558" 
-            //             size={25}  
-            //             onPress={() =>navigation.dispatch(DrawerActions.openDrawer)}
-            //             />
-            //             </View>
-            //         )
-            //     }
-            // }}
-            />
-            <Stack.Screen name="registro" component={SignUp}/>
-            <Stack.Screen name="entrada" component={NavigationDrawer}/> 
+        <Stack.Navigator  initialRouteName='entrar' screenOptions={{
+            headerStyle: {
+              backgroundColor: '#1e40af', // Color de fondo del header
+            },
+            headerTintColor: '#fff', // Color del texto y los íconos
+            headerTitleStyle: {
+              fontWeight: 'bold', // Estilo del título
+              fontSize: 22,        // Tamaño de la fuente del título
+            },
+          }}>
+            <Stack.Screen name="entrar" component={SignIn}   options={{
+                 headerShown: false, 
+            }}/>
+            <Stack.Screen name="Registro" component={SignUp}/>
+            <Stack.Screen name="entrada" component={NavigationDrawer} options={{
+                 headerShown: false, 
+            }}/> 
         </Stack.Navigator>
     );
 }
