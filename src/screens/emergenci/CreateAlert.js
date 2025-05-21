@@ -15,8 +15,8 @@ const CreateAlert = () => {
   const [location, setLocation] = useState(null);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [origin, setOrigin] = React.useState({
-    latitude : 4.103093,   //4.1340
-    longitude: -73.590991, //-73.6266
+    latitude :  4.1340,  //4.103093
+    longitude: -73.6266, //-73.590991
 });
 const navigation = useNavigation();
 const { data, loading, error } = useCurrentUser()

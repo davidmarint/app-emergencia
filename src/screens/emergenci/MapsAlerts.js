@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import *as Location from 'expo-location';
 import { View, Text, Alert, TouchableOpacity } from 'react-native';
 import MapViewDirections from 'react-native-maps-directions';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, Callout} from 'react-native-maps';
 import { useRoute } from '@react-navigation/native';
-import { emergenciesApi } from '../../api';
+import { emergenciesApi, usersApi } from '../../api';
 import { useNavigation } from '@react-navigation/native';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
 import { useSelector } from 'react-redux';
@@ -20,6 +20,7 @@ const MapasAlert = () => {
         longitude: -73.590991, //longitudeAlert
     });
     const [alerts, setAlerts] = useState([]);
+    const [listUsers, setListUsers] = useState([]);
     const { data} = useCurrentUser()
     const lat = parseFloat(item.latitude)
     const log = parseFloat(item.longitude)
@@ -41,8 +42,10 @@ const MapasAlert = () => {
     const fetchAlerts = async () => {
          try {
        const response = await emergenciesApi.mainEmergenciesEmergencyList();
+       const usarios = await usersApi.mainUsersUsersList()
            // Suponiendo que `setAlerts` es un hook para almacenar las alertas en el estado
            setAlerts(response.data);
+            setListUsers(usarios.data);
            if(response.status==200||201){
             
               //console.log("los datos llegaron")
@@ -122,6 +125,9 @@ const MapasAlert = () => {
                <Text style={tw`text-xl font-bold text-blue-950 `}>Emergencias Activas</Text>
                </View>
                <View style={tw`border-t-2  border-blue-950`}>
+             
+        
+
            <MapView 
            style={tw`w-full h-8/9`}
     
@@ -164,6 +170,9 @@ const MapasAlert = () => {
           
         </MapView>
         </View>
+        {/* <View style={tw`absolute h-20 w-full  bg-red-600 top-20`}>
+            
+        </View> */}
         {selectedMarker && data.role.name !== "ciudadano" &&(
         <TouchableOpacity
           style={tw`absolute bottom-10 left-10 right-10 p-4 bg-blue-500 rounded-2xl items-center justify-center`}

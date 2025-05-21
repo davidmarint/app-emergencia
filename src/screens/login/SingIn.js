@@ -1,10 +1,10 @@
 import tw from 'twrnc'
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, Image, TouchableOpacity, Alert} from 'react-native';
+import { View, Text, Button, TextInput, Image, TouchableOpacity, Alert ,KeyboardAvoidingView} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { signIn } from '../../slices/userSlice';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const SingIn = () => {
     
@@ -41,7 +41,7 @@ const SingIn = () => {
         navigation.navigate("entrada");
     }
     return (
-        
+       <KeyboardAvoidingView style={tw`flex-1`}>
         <View style={tw`flex-1  items-center bg-white`}>
             <View style={tw` h-1/2 w-full bg-blue-800 p-0 rounded-b-30 shadow-md`}></View>
             <Image 
@@ -78,6 +78,7 @@ const SingIn = () => {
                 </TouchableOpacity>
             </View>
         </View>
+        </KeyboardAvoidingView>
     )}
 
 export default SingIn;

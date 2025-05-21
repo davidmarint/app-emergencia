@@ -197,6 +197,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/TokenOutput'
           description: ''
+  /api/main/users/postulations/:
+    get:
+      operationId: main_users_postulations_list
+      tags:
+      - postulations
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmeregencyRoleSerializerResponse'
+          description: ''
   /api/main/users/recover-password-code:
     post:
       operationId: main_users_recover_password_code_create
@@ -274,11 +290,27 @@ paths:
       - jwtAuth: []
       - {}
       responses:
-        '200':
+        '201':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+          description: ''
+  /api/main/users/users/:
+    get:
+      operationId: main_users_users_list
+      tags:
+      - Users
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
           description: ''
   /api/main/users/users/{id}/:
     get:
@@ -356,6 +388,36 @@ components:
       required:
       - email
       - password
+    EmeregencyRoleSerializerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          $ref: '#/components/schemas/User'
+        status:
+          $ref: '#/components/schemas/EmeregencyRoleSerializerResponseStatusEnum'
+        requested_role:
+          $ref: '#/components/schemas/Role'
+        plate_vehicle:
+          type: string
+          maxLength: 10
+      required:
+      - id
+      - plate_vehicle
+      - requested_role
+      - user
+    EmeregencyRoleSerializerResponseStatusEnum:
+      enum:
+      - pending
+      - approved
+      - rejected
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `approved` - Approved
+        * `rejected` - Rejected
     EmergenciesType:
       type: object
       properties:
@@ -385,7 +447,7 @@ components:
           type: string
           maxLength: 20
         status:
-          $ref: '#/components/schemas/StatusEnum'
+          $ref: '#/components/schemas/EmergencyStatusEnum'
         created_at:
           type: string
           format: date-time
@@ -417,6 +479,14 @@ components:
           maxLength: 255
       required:
       - role
+    EmergencyStatusEnum:
+      enum:
+      - active
+      - inactive
+      type: string
+      description: |-
+        * `active` - Active
+        * `inactive` - Inactive
     NameEnum:
       enum:
       - ciudadano
@@ -481,14 +551,6 @@ components:
         * `policia` - policia
         * `ambulancia` - ambulancia
         * `bomberos` - bomberos
-    StatusEnum:
-      enum:
-      - active
-      - inactive
-      type: string
-      description: |-
-        * `active` - Active
-        * `inactive` - Inactive
     TokenOutput:
       type: object
       properties:

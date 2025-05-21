@@ -14,7 +14,6 @@ const BotonList = (props) => {
     const seleccion = (phoneName) =>{
         const emergencyMatch = dataNumber.find((emergency) => emergency.nombre === phoneName);
         if (emergencyMatch) {
-            console.log(`Llamar a:`); //quitar al final 
             navigation.navigate("Telefono", {item: emergencyMatch});
         } else if (phoneName === "Clínicas"){
             navigation.navigate("Clinicas", {item: emergencyMatch});

@@ -15,17 +15,18 @@
 
 
 /**
- * * `active` - Active * `inactive` - Inactive
+ * * `pending` - Pending * `approved` - Approved * `rejected` - Rejected
  * @export
  * @enum {string}
  */
 
-export const StatusEnum = {
-    Active: 'active',
-    Inactive: 'inactive'
+export const EmeregencyRoleSerializerResponseStatusEnum = {
+    Pending: 'pending',
+    Approved: 'approved',
+    Rejected: 'rejected'
 } as const;
 
-export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
+export type EmeregencyRoleSerializerResponseStatusEnum = typeof EmeregencyRoleSerializerResponseStatusEnum[keyof typeof EmeregencyRoleSerializerResponseStatusEnum];
 
 
 

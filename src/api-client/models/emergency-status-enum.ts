@@ -14,10 +14,18 @@
 
 
 
-export * from './api/authenticate-api';
-export * from './api/change-role-api';
-export * from './api/emergencies-api';
-export * from './api/main-api';
-export * from './api/postulations-api';
-export * from './api/users-api';
+/**
+ * * `active` - Active * `inactive` - Inactive
+ * @export
+ * @enum {string}
+ */
+
+export const EmergencyStatusEnum = {
+    Active: 'active',
+    Inactive: 'inactive'
+} as const;
+
+export type EmergencyStatusEnum = typeof EmergencyStatusEnum[keyof typeof EmergencyStatusEnum];
+
+
 

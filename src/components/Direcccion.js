@@ -16,7 +16,7 @@ async function getLoscationPermission() {
                     alert('permission denied')
                     console.log('El usuario no otorgó permisos para acceder a la ubicación.');
                     return;
-                        // Aquí podrías mostrar un mensaje al usuario informándole que necesita otorgar permisos.
+                       
                     } else {
                         let location = await Location.getCurrentPositionAsync({});
                         const { coords } = location;

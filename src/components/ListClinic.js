@@ -9,7 +9,6 @@ const ListClinic = ({item}) => {
     const navigation = useNavigation();
 
     const handleCallPress = (phoneNumber) => {
-        // Lógica para realizar la llamada
         console.log(`Llamar a: ${phoneNumber}`);//quitar al final
         navigation.navigate("Telefono", {item})
     };

@@ -102,6 +102,39 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mainUsersUsersList: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/main/users/users/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwtAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -173,6 +206,17 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async mainUsersUsersList(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mainUsersUsersList(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.mainUsersUsersList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -210,6 +254,14 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          */
         mainUsersUsersDestroy(requestParameters: UsersApiMainUsersUsersDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.mainUsersUsersDestroy(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mainUsersUsersList(options?: RawAxiosRequestConfig): AxiosPromise<Array<User>> {
+            return localVarFp.mainUsersUsersList(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -278,6 +330,16 @@ export class UsersApi extends BaseAPI {
      */
     public mainUsersUsersDestroy(requestParameters: UsersApiMainUsersUsersDestroyRequest, options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).mainUsersUsersDestroy(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public mainUsersUsersList(options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).mainUsersUsersList(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

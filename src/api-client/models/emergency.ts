@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { StatusEnum } from './status-enum';
+import type { EmergencyStatusEnum } from './emergency-status-enum';
 
 /**
  * 
@@ -43,10 +43,10 @@ export interface Emergency {
     'longitude': string;
     /**
      * 
-     * @type {StatusEnum}
+     * @type {EmergencyStatusEnum}
      * @memberof Emergency
      */
-    'status'?: StatusEnum;
+    'status'?: EmergencyStatusEnum;
     /**
      * 
      * @type {string}
