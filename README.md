@@ -60,7 +60,7 @@ Aplicación móvil desarrollada con React Native + Expo que permite a los ciudad
 1. Clona el repositorio
 
  ```bash
- git clone https://github.com/tuusuario/app-emergencia.git
+ git clone https://github.com/davidmarint/app-emergencia.git
  cd app-emergencia
  ```
 
